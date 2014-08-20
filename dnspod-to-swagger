@@ -1,0 +1,124 @@
+#!/bin/env python3
+# vim: set ts=4 sw=4 :
+# vim: set noexpandtab :
+
+import sys
+import io
+
+import locale
+import inspect
+
+import docutils.utils
+import docutils.parsers.rst
+
+import argparse
+import json
+
+import locale
+
+import lxml.etree 
+
+class DocumentSettings:
+	def __init__( self ):
+		self.tab_width = 8
+		self.report_level = 10
+		self.halt_level = 20
+		self.warning_stream = sys.stderr
+		self.debug = False
+		self.error_encoding = None
+		self.error_encoding_error_handler = None
+		self.language_code = "EN"
+		self.pep_references = None
+		self.rfc_references = None
+		self.id_prefix = ""
+
+
+class DocumentProcessor( object ):
+	def __init__( self ):
+		return
+
+	def process( self, root ):
+		#URL：
+		#API Address：
+		#api_section_path = ".//section[ ( definition_list/definition_list_item/term = 'URL：' ) or ( definition_list/definition_list_item/term = 'API Address：' ) ]"
+		api_section_path = "//section[ ( definition_list/definition_list_item/term = 'URL：' ) or ( definition_list/definition_list_item/term = 'API Address：' ) ]"
+		verbose_write( 2, "api_section_path = {}".format( api_section_path ) )
+		api_sections = root.getroottree().findall( api_section_path )
+		verbose_write( 3, "api_sections = {}".format( [ lxml.etree.tostring( api_section ) for api_section in api_sections ] ) )
+		return
+	
+
+if __name__ == '__main__':
+
+	default_encoding = locale.getpreferredencoding()
+
+	argument_parser = argparse.ArgumentParser()
+	argument_parser.add_argument( "-v", "--verbose", action="count", dest="verbosity", help="increase verbosity level" )
+	argument_parser.add_argument( "-i", "--input", action="append", dest="inputs_o", metavar="INPUT", default=[], help="specify input file" )
+	argument_parser.add_argument( "input", action="store", nargs="*", help="specify input file" )
+	argument_parser.add_argument( "-o", "--output", action="store", dest="output", nargs=1, help="specify output file" )
+	argument_parser.add_argument( "-e", "--encoding", action="store", dest="encoding", nargs=1, default=default_encoding, help="specify encoding (default={})".format( default_encoding ) )
+
+	arguments = argument_parser.parse_args( args = sys.argv[1:] )
+
+	if arguments.verbosity is not None:
+		def verbose_write( level, string ):
+			if ( level + 1 ) <= arguments.verbosity:
+				## https://gist.github.com/techtonik/2151727
+				stack = inspect.stack()
+				parentframe = stack[ 1 ][ 0 ]
+				module = inspect.getmodule( parentframe )
+				module_name = ""
+				class_name = ""
+				if module:
+						module_name = module.__name__
+				if 'self' in parentframe.f_locals:
+						class_name = parentframe.f_locals['self'].__class__.__name__
+				code_name = parentframe.f_code.co_name;
+
+				sys.stderr.write( "{}::{}::{}[{}]:{}\n".format( module_name, class_name, code_name, parentframe.f_lineno, string ) )
+
+	else:
+		verbose_write = lambda *a: None
+
+	inputs = []
+	inputs += arguments.inputs_o
+	inputs += arguments.input
+
+	verbose_write( 0, "arguments.verbosity={}".format( json.dumps( arguments.verbosity ) ) )
+	verbose_write( 0, "arguments.inputs_o={}".format( json.dumps( arguments.inputs_o ) ) )
+	verbose_write( 0, "arguments.input={}".format( json.dumps( arguments.input ) ) )
+	verbose_write( 0, "arguments.encoding={}".format( json.dumps( arguments.encoding ) ) )
+	verbose_write( 0, "inputs={}".format( json.dumps( inputs ) ) )
+
+
+	input_fhs = []
+
+	if len( inputs ) > 0:
+		for input in inputs:
+			input_fhs = input_fhs + [ open( input, "r", encoding=arguments.encoding ) ]
+	else:
+		input_fhs = input_fhs +[ io.TextIOWrapper( sys.stdin.buffer, encoding=arguments.encoding ) ]
+
+
+	rst_parser = docutils.parsers.rst.Parser()
+	document_settings = DocumentSettings()
+	etree_parser = lxml.etree.XMLParser( remove_blank_text=True, resolve_entities=True )
+
+	document_processor = DocumentProcessor()
+
+	for input_fh in input_fhs:
+		verbose_write( 0, "input_fh={}".format( input_fh ) )
+		input_data = input_fh.read()
+		document = docutils.utils.new_document( source_path=input_fh.name, settings=document_settings )
+		rst_parser.parse( input_data, document )
+		verbose_write( 1, "document.children={}".format( document.children ) )
+		verbose_write( 2, "document.asdom()={}".format( document.asdom() ) )
+		verbose_write( 4, "document={}".format( document.asdom().toprettyxml( "  ", '\n' ) ) )
+		tmp = open( input_fh.name + ".xml", 'w' )
+		verbose_write( 2, "tmp.name={}".format( tmp.name ) )
+		tmp.write( document.asdom().toprettyxml( "  ", '\n' ) )
+		root = lxml.etree.fromstring( document.asdom().toxml(), etree_parser )
+		document_processor.process( root )
+
+
