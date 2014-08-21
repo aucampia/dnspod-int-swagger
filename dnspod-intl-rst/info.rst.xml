@@ -1,0 +1,402 @@
+<?xml version="1.0" ?>
+<document source="dnspod-intl-rst/info.rst">
+  <section ids="api-explanation" names="api\ explanation">
+    <title>API Explanation</title>
+    <paragraph>
+      1. DNSPod Users' API,aim to help the users to manage their domains conveniently,are limited to persional users to use.
+3. No third-party applications or users are allowed to use this API. If you have needs,please let us know: 
+      <reference refuri="https://www.dnspod.com/About/Aboutus">https://www.dnspod.com/About/Aboutus</reference>
+       .
+    </paragraph>
+    <section ids="api-development-norm" names="api\ development\ norm">
+      <title>API Development Norm</title>
+      <enumerated_list enumtype="arabic" prefix="" suffix=".">
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>Misuse：</term>
+              <definition>
+                <definition_list>
+                  <definition_list_item>
+                    <term>This will be looked as API misuse. Including but not limit to:</term>
+                    <definition>
+                      <bullet_list bullet="*">
+                        <list_item>
+                          <paragraph>Do a lot of inserts,deletes,updates or refreshes within a short time.</paragraph>
+                        </list_item>
+                        <list_item>
+                          <paragraph>Request a lot without changing anything. What are you thinking!</paragraph>
+                        </list_item>
+                        <list_item>
+                          <paragraph>Too many useless or repeated requests caused by wrong logic or endless loops.</paragraph>
+                        </list_item>
+                        <list_item>
+                          <paragraph>Other requests that may give us a lot of pressure.</paragraph>
+                        </list_item>
+                      </bullet_list>
+                    </definition>
+                  </definition_list_item>
+                </definition_list>
+                <paragraph>In order to ensure you and other developers' benifits,please use our APIs legitimately. DNSPod will punish the behaviors like API misuse by prohibit the accounts and reserve all the rights to arbitate.`</paragraph>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>Login Disable：</term>
+              <definition>
+                <paragraph>If there are more than 30 login failures within 5 minutes,the account will be disabled to login again for an hour. Please check the login status when you develop your own applications,and stop trying if fails.</paragraph>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>Prohibition：</term>
+              <definition>
+                <paragraph>Even got prohibited,you can still use it on the official website. The prohibition will be relieved an hour later.Please be careful and never use it for large tests.</paragraph>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>Requests：</term>
+              <definition>
+                <bullet_list bullet="*">
+                  <list_item>
+                    <paragraph>
+                      The request url starts with &quot;
+                      <reference refuri="https://dnsapi.cn/">https://dnsapi.cn/</reference>
+                      &quot;,which based on SSL. You must use &quot;https&quot; instead of &quot;http&quot;.
+                    </paragraph>
+                  </list_item>
+                  <list_item>
+                    <paragraph>POST method accepted only.</paragraph>
+                  </list_item>
+                  <list_item>
+                    <paragraph>Please use UTF-8 encoding for data transfer. The responses are also UTF-8 encoded.</paragraph>
+                  </list_item>
+                </bullet_list>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>UserAgent：</term>
+              <definition>
+                <bullet_list bullet="*">
+                  <list_item>
+                    <paragraph>The UserAgent must be seted. Prohibition may caused by wrong UserAgent or none.</paragraph>
+                  </list_item>
+                  <list_item>
+                    <paragraph>UserAgent Format:Application Name/Version(email). For example:&quot;MJJ DDNS Client/1.0.0 (shallwedance@dnspod.com)&quot;.</paragraph>
+                  </list_item>
+                </bullet_list>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>Security：</term>
+              <definition>
+                <paragraph>Almost every step needs the email address and the password. So if you have to storage the user's informations,please encrypt the password first. Never storage the password directly.</paragraph>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+        <list_item>
+          <definition_list>
+            <definition_list_item>
+              <term>Support：</term>
+              <definition>
+                <bullet_list bullet="*">
+                  <list_item>
+                    <paragraph>
+                      Support center: 
+                      <reference refuri="https://www.dnspod.com/Support">https://www.dnspod.com/Support</reference>
+                    </paragraph>
+                  </list_item>
+                </bullet_list>
+              </definition>
+            </definition_list_item>
+          </definition_list>
+        </list_item>
+      </enumerated_list>
+    </section>
+    <section ids="global-parameters" names="global\ parameters">
+      <title>Global Parameters</title>
+      <definition_list>
+        <definition_list_item>
+          <term>All the APIs need this parameters.</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>login_email The login email.Essential parameter.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>login_password The login password.Essential parameter.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>format {json,xml} The format of response.Default &quot;xml&quot;. &quot;json&quot; is highly recommended.Optional parameter.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>error_on_empty {yes,no} Whether to response an error when there's no results.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>user_id The user's ID. A must for agent users, and a waste for regular users.</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+      </definition_list>
+    </section>
+    <section ids="common-response-code" names="common\ response\ code">
+      <title>Common Response Code</title>
+      <definition_list>
+        <definition_list_item>
+          <term>Those responses codes could be in any API beacuse they are the common responses.</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>-1 Login fails.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>-2 API used too frequently.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>-3 Invalid agent.(only works for agent users)</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>-4 Not in this agent.(only works for agent users)</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>-7 No permission to use this API.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>-8 Account got prohibited.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>85 Account logined in another place and your request got rejected.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>-99 This API is not ready to be used.No rush.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>1 Action completed successfully.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>2 POST method only.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>3 Unknown errors.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>6 Invalid user_id.(only works for agent users)</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>7 User is not under this agent.(only works for agent users)</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+      </definition_list>
+    </section>
+    <section ids="get-the-user-token" names="get\ the\ user\ token">
+      <title>Get the user token</title>
+      <paragraph>Before you use the APIs, you need get a user-token first by this one.</paragraph>
+      <definition_list>
+        <definition_list_item>
+          <term>API Address：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>
+                  <reference refuri="https://api.dnspod.com/Auth">https://api.dnspod.com/Auth</reference>
+                </paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>HTTP Request Type：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>POST</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>Request Parameters：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>Global parameters.</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>Response Code：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>Common response</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>10001 User have been spamed</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>10003 Account email is invalid</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>10004 Password's length is invalid, must between 6 and 32</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>10005 Account is not exist</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+      </definition_list>
+      <paragraph>Example:</paragraph>
+      <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Auth -d 'login_email=api@dnspod.com&amp;login_password=password&amp;format=json'</literal_block>
+      <paragraph>Response：</paragraph>
+      <block_quote>
+        <bullet_list bullet="*">
+          <list_item>
+            <paragraph>JSON:</paragraph>
+            <literal_block xml:space="preserve">{
+    &quot;status&quot;: {
+        &quot;code&quot;: &quot;1&quot;,
+        &quot;message&quot;: &quot;Action completed successful&quot;,
+        &quot;created_at&quot;: &quot;2014-06-04 20:37:31&quot;
+    },
+    &quot;user_token&quot;: &quot;730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&quot;
+}</literal_block>
+          </list_item>
+        </bullet_list>
+      </block_quote>
+    </section>
+    <section ids="d-token" names="d-token">
+      <title>D-Token</title>
+      <definition_list>
+        <definition_list_item>
+          <term>Users that already turned the D-Token on need this parameters in the request:</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>login_code The code that generated by the D-Token.Essential parameter.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>login_remember {yes,no} Whether to remember the D-Token code.Default &quot;yes&quot;.</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>Attention:</term>
+          <definition>
+            <paragraph>Since the D-Token code changes every 30 seconds,it is highly recommended that you set the &quot;login_remember&quot; to &quot;yes&quot;.If so,you will get an extra response with the format of &quot;t + user_id&quot; like &quot;t123456&quot;,whose life last for a month.With this cookie,you don't need to submit the &quot;login_code&quot; and &quot;login_remember&quot;.</paragraph>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>If you are using D-Token,this error codes might be responsed.</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>50 You already turned the D-Token on,and we need you D-Token code.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>51 You hasn't turned the D-Token on.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>52 Invalid login code.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>53 You already turned the D-Token on.</paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>54 The owner has turned the D-Token on,and so should you.</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+      </definition_list>
+    </section>
+    <section ids="get-the-version-of-api" names="get\ the\ version\ of\ api">
+      <title>Get the Version of API</title>
+      <definition_list>
+        <definition_list_item>
+          <term>API Address：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>
+                  <reference refuri="https://api.dnspod.com/Info.Version">https://api.dnspod.com/Info.Version</reference>
+                </paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>HTTP Request Type：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>POST</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>Request Parameters：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>Global parameters.</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+        <definition_list_item>
+          <term>Response Code：</term>
+          <definition>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>Common response</paragraph>
+              </list_item>
+            </bullet_list>
+          </definition>
+        </definition_list_item>
+      </definition_list>
+      <paragraph>Example:</paragraph>
+      <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Info.Version -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
+      <paragraph>Response：</paragraph>
+      <block_quote>
+        <bullet_list bullet="*">
+          <list_item>
+            <paragraph>JSON:</paragraph>
+            <literal_block xml:space="preserve">{
+    &quot;status&quot;: {
+        &quot;code&quot;: &quot;1&quot;,
+        &quot;message&quot;: &quot;4.6&quot;,
+        &quot;created_at&quot;: &quot;2014-06-04 20:40:37&quot;
+    }
+}</literal_block>
+          </list_item>
+        </bullet_list>
+      </block_quote>
+    </section>
+  </section>
+</document>

@@ -33,18 +33,66 @@ class DocumentSettings:
 		self.id_prefix = ""
 
 
+
 class DocumentProcessor( object ):
+
+	class State( object ):
+		def __init__( self ):
+			return
+
 	def __init__( self ):
 		return
+
+	@staticmethod
+	def check( condition, message, *, asrt=False ):
+		if not condition:
+			if asrt and not __debug__: raise AssertionError( message )
+			raise RuntimeError( message )
+		return
+
+	@staticmethod
+	def xpath( element, path, *, count=None, must_exist, asrt=False, msg="" ):
+		verbose_write( 3, "{}:element = {}".format( msg, lxml.etree.tostring( element ).decode( "utf-8" ) ), stack_depth=2 )
+		verbose_write( 1, "{}:xpath = {}".format( msg, path ), stack_depth=2 )
+		result = element.xpath( path )
+		verbose_write( 2, "{}:result = {}, len( result ) = {}".format( msg, result, len( result ) ), stack_depth=2 )
+		if must_exist:
+			DocumentProcessor.check( ( result is not None ) and ( len( result ) > 0 ), "{}:xpath query [{}] did not yield results.".format( msg, path ) )
+		if count is not None:
+			DocumentProcessor.check( count( len( result ) ), "{}:xpath query [{}] got {} results, expected something else".format( msg, path, len( result ) ) )
+		return result;
 
 	def process( self, root ):
 		#URL：
 		#API Address：
 		#api_section_path = ".//section[ ( definition_list/definition_list_item/term = 'URL：' ) or ( definition_list/definition_list_item/term = 'API Address：' ) ]"
-		api_section_path = "//section[ ( definition_list/definition_list_item/term = 'URL：' ) or ( definition_list/definition_list_item/term = 'API Address：' ) ]"
-		verbose_write( 2, "api_section_path = {}".format( api_section_path ) )
-		api_sections = root.getroottree().findall( api_section_path )
-		verbose_write( 3, "api_sections = {}".format( [ lxml.etree.tostring( api_section ) for api_section in api_sections ] ) )
+		#api_section_path = "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( section/definition_list/definition_list_item/term, 'API Address' ) ) ]"
+		#verbose_write( 1, "api_section_path = {}".format( api_section_path ) )
+		#verbose_write( 3, "api_sections = {}".format( [ lxml.etree.tostring( api_section ) for api_section in api_sections ] ) )
+		#api_sections = root.getroottree().xpath( api_section_path )
+		api_sections = self.xpath( root.getroottree(), "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( section/definition_list/definition_list_item/term = 'API Address：' ) ]", must_exist = True, msg="looking for api sections inside document" )
+		if api_sections is not None:
+			for api_section in api_sections:
+				self.process_api_section( api_section )
+		return
+	
+	def process_api_section( self, api_section ):
+		verbose_write( 3, "api_section = {}".format( lxml.etree.tostring( api_section ).decode( "utf-8" ) ) )
+
+		#method_section_path = "./section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]"
+		#verbose_write( 1, "method_section_path = {}".format( method_section_path ) )
+		#method_sections = api_section.xpath( method_section_path )
+		#self.check( method_sections is not None, "xpath query [ {} ] did not yield results.".format( method_section_path ), asrt=True )
+		method_sections = self.xpath( root.getroottree(), "./section/section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for method sections inside api section" )
+		for method_section in method_sections:
+			self.process_method_section( method_section )
+		return
+
+	def process_method_section( self, method_section ):
+		verbose_write( 2, "method_section = {}".format( lxml.etree.tostring( method_section ).decode( "utf-8" ) ) )
+		definition_list = self.xpath( method_section, "./definition_list", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for definition_list inside method section" )[ 0 ]
+		url = self.xpath( definition_list, "./definition_list_item[ starts-with( term, 'URL' ) or starts-with( term, 'API Address' ) ]/definition/bullet_list/list_item/paragraph/reference/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for url in definition_list" )[ 0 ]
+		verbose_write( 1, "url = {}".format( url ) )
 		return
 	
 
@@ -62,11 +110,11 @@ if __name__ == '__main__':
 	arguments = argument_parser.parse_args( args = sys.argv[1:] )
 
 	if arguments.verbosity is not None:
-		def verbose_write( level, string ):
+		def verbose_write( level, string, *, stack_depth=1 ):
 			if ( level + 1 ) <= arguments.verbosity:
 				## https://gist.github.com/techtonik/2151727
 				stack = inspect.stack()
-				parentframe = stack[ 1 ][ 0 ]
+				parentframe = stack[ stack_depth ][ 0 ]
 				module = inspect.getmodule( parentframe )
 				module_name = ""
 				class_name = ""
@@ -100,7 +148,6 @@ if __name__ == '__main__':
 	else:
 		input_fhs = input_fhs +[ io.TextIOWrapper( sys.stdin.buffer, encoding=arguments.encoding ) ]
 
-
 	rst_parser = docutils.parsers.rst.Parser()
 	document_settings = DocumentSettings()
 	etree_parser = lxml.etree.XMLParser( remove_blank_text=True, resolve_entities=True )
@@ -114,7 +161,7 @@ if __name__ == '__main__':
 		rst_parser.parse( input_data, document )
 		verbose_write( 1, "document.children={}".format( document.children ) )
 		verbose_write( 2, "document.asdom()={}".format( document.asdom() ) )
-		verbose_write( 4, "document={}".format( document.asdom().toprettyxml( "  ", '\n' ) ) )
+		verbose_write( 5, "document={}".format( document.asdom().toprettyxml( "  ", '\n' ) ) )
 		tmp = open( input_fh.name + ".xml", 'w' )
 		verbose_write( 2, "tmp.name={}".format( tmp.name ) )
 		tmp.write( document.asdom().toprettyxml( "  ", '\n' ) )
