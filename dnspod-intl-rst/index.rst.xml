@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<document source="dnspod-intl-rst/index.rst">
+  <section ids="dnspod-user-api-document" names="dnspod\ user\ api\ document">
+    <title>DNSPod User API Document</title>
+    <system_message level="1" line="4" source="dnspod-intl-rst/index.rst" type="INFO">
+      <paragraph>No directive entry for &quot;centered&quot; in module &quot;docutils.parsers.rst.languages.en&quot;.
+Trying &quot;centered&quot; as canonical directive name.</paragraph>
+    </system_message>
+    <system_message level="3" line="4" source="dnspod-intl-rst/index.rst" type="ERROR">
+      <paragraph>Unknown directive type &quot;centered&quot;.</paragraph>
+      <literal_block xml:space="preserve">.. centered:: DNSPod Documentation |version| released |today|
+
+</literal_block>
+    </system_message>
+    <section ids="index" names="index">
+      <title>Index</title>
+      <system_message level="1" line="9" source="dnspod-intl-rst/index.rst" type="INFO">
+        <paragraph>No directive entry for &quot;toctree&quot; in module &quot;docutils.parsers.rst.languages.en&quot;.
+Trying &quot;toctree&quot; as canonical directive name.</paragraph>
+      </system_message>
+      <system_message level="3" line="9" source="dnspod-intl-rst/index.rst" type="ERROR">
+        <paragraph>Unknown directive type &quot;toctree&quot;.</paragraph>
+        <literal_block xml:space="preserve">.. toctree::
+    :maxdepth: 2
+
+    info
+    accounts
+    domains
+    records
+    d-monitor</literal_block>
+      </system_message>
+    </section>
+  </section>
+</document>
