@@ -6,7 +6,7 @@
       <title>Add New Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -18,7 +18,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -28,7 +28,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -56,11 +56,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain.</paragraph>
@@ -83,7 +83,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Create -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;domain=api2.com&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -108,7 +108,7 @@
       <title>Get The Domain List</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -120,7 +120,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -130,7 +130,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -141,33 +141,33 @@
                   <definition_list_item>
                     <term>
                       <strong>type</strong>
-                       The domain type.Optional parameter.Default value:'all'.Here are all the choseable values :
+                       The domain type.Optional parameter.Default value:'all'.Here are all the choosable values :
                     </term>
                     <definition>
                       <bullet_list bullet="*">
                         <list_item>
-                          <paragraph>all：All the domains</paragraph>
+                          <paragraph>all:All the domains</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>mine：Only mine.</paragraph>
+                          <paragraph>mine:Only mine.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>share：Domains that shared with me.</paragraph>
+                          <paragraph>share:Domains that shared with me.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>ismark：Marked domains.</paragraph>
+                          <paragraph>ismark:Marked domains.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>pause：Paused domains.</paragraph>
+                          <paragraph>pause:Paused domains.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>vip：VIP domains.</paragraph>
+                          <paragraph>vip:VIP domains.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>recent：Domains operated recentily.</paragraph>
+                          <paragraph>recent:Domains operated recently.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>share_out：Domains that I shared out.</paragraph>
+                          <paragraph>share_out:Domains that I shared out.</paragraph>
                         </list_item>
                       </bullet_list>
                     </definition>
@@ -189,28 +189,28 @@
               <list_item>
                 <paragraph>
                   <strong>group_id</strong>
-                   The group ID.Only in this group can the domain be in the results if this parameter is seted.Optional parameter.
+                   The group ID.Only in this group can the domain be in the results if this parameter is set.Optional parameter.
                 </paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Attention：</term>
+          <term>Attention:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>If there are more than 500 domains in your account,only the first 500 domains will responsed for split page.You may need to set the parameter &quot;offset&quot; and &quot;length&quot; to get all your domains with multi requests.</paragraph>
+                <paragraph>If there are more than 500 domains in your account,only the first 500 domains will responded for split page.You may need to set the parameter &quot;offset&quot; and &quot;length&quot; to get all your domains with multi requests.</paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid offset.</paragraph>
@@ -227,7 +227,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -282,7 +282,7 @@
       <title>Delete Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -294,7 +294,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -304,7 +304,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -322,11 +322,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -349,7 +349,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Remove -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=1992403'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -369,7 +369,7 @@
       <title>Set Domain Status</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -381,7 +381,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -391,7 +391,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -415,11 +415,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -445,7 +445,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Status -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2058967&amp;status=disable'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -465,7 +465,7 @@
       <title>Get The Domain Information</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -477,7 +477,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -487,7 +487,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -505,11 +505,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-7 The company account need a upgrade before doing this.</paragraph>
@@ -529,7 +529,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Info  -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -570,7 +570,7 @@
       <title>Get the Operate Logs of a Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -582,7 +582,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -592,7 +592,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -610,11 +610,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-7 The company account need a upgrade before doing this.</paragraph>
@@ -634,7 +634,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Log  -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -661,7 +661,7 @@
       <title>Push Domain to Search Engine</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -673,7 +673,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -683,7 +683,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -707,11 +707,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -737,7 +737,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Searchenginepush -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;status=yes'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -757,7 +757,7 @@
       <title>Share a Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -769,7 +769,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -779,7 +779,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -815,11 +815,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -851,7 +851,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainshare.Create -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;email=otheruser@dnspod.com&amp;mode=rw'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -871,7 +871,7 @@
       <title>Get Domain Share List</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -883,7 +883,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -893,7 +893,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -911,11 +911,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-7 The company account need a upgrade before doing this.</paragraph>
@@ -935,7 +935,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainshare.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -963,7 +963,7 @@
       <title>Update the Domain Share</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -975,7 +975,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -985,7 +985,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1014,7 +1014,7 @@
               <list_item>
                 <paragraph>
                   <strong>old_sub_domain</strong>
-                   The old subsidiary domain that already shared.This parameter shouldn't be seted if you want to update the domain name.
+                   The old subsidiary domain that already shared.This parameter shouldn't be set if you want to update the domain name.
                 </paragraph>
               </list_item>
               <list_item>
@@ -1027,11 +1027,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1081,7 +1081,7 @@
           <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainshare.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;email=yizerowu@dnspod.com&amp;mode=rw&amp;old_sub_domain=www&amp;new_sub_domain=bbs'</literal_block>
         </list_item>
       </enumerated_list>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1101,12 +1101,11 @@
       <title>Delete a Domain Share</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Domainshare.Remove">https://api.dnspod.com/Domainshare.Remove</reference>
                 </paragraph>
               </list_item>
@@ -1114,7 +1113,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1124,7 +1123,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1148,11 +1147,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1181,7 +1180,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainshare.Remove -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;email=yizerowu@dnspod.com'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1201,7 +1200,7 @@
       <title>Transfer a Domain to Another Account</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1213,7 +1212,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1223,7 +1222,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1247,11 +1246,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1272,13 +1271,13 @@
                 <paragraph>8 Email address not exists.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>9 You cannt transfer it to yourself.</paragraph>
+                <paragraph>9 You cannot transfer it to yourself.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>10 You can't transfer a domain from a persional account to a company account.</paragraph>
+                <paragraph>10 You can't transfer a domain from a personal account to a company account.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>11 You can't transfer a domain from a company account to a persional account.</paragraph>
+                <paragraph>11 You can't transfer a domain from a company account to a personal account.</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -1286,7 +1285,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainshare.Transfer -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;email=yizerowu@dnspod.com'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1306,7 +1305,7 @@
       <title>Lock a Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1318,7 +1317,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1328,7 +1327,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1350,11 +1349,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1386,7 +1385,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Lock -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;days=3'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1411,7 +1410,7 @@
       <title>Lock Status</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1423,7 +1422,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1433,7 +1432,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1451,11 +1450,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1478,7 +1477,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Lockstatus -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1504,7 +1503,7 @@
       <title>Domain Unlock</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1516,7 +1515,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1526,7 +1525,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1550,11 +1549,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1583,7 +1582,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Unlock -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;lock_code=fdd638'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1608,7 +1607,7 @@
       <title>Get Domain Alias List</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1620,7 +1619,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1630,7 +1629,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1648,11 +1647,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-7 The company account need a upgrade before doing this.</paragraph>
@@ -1672,7 +1671,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainalias.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1698,7 +1697,7 @@
       <title>Add a Domain Alias</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1710,7 +1709,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1720,7 +1719,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1742,11 +1741,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1778,7 +1777,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainalias.Create -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;domain=dnspodapi.com'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1802,7 +1801,7 @@
       <title>Remove a Domain Alias</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1814,7 +1813,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1824,7 +1823,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1848,11 +1847,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1875,7 +1874,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domainalias.Remove -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;alias_id=18737'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1895,7 +1894,7 @@
       <title>Get The Domain Group List</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1907,7 +1906,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1917,7 +1916,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1927,11 +1926,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -1939,7 +1938,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domaingroup.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2009,15 +2008,19 @@
       <title>Add a New Domain Group</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
-            <paragraph>
-              <reference refuri="https://api.dnspod.com/Domaingroup.Create">https://api.dnspod.com/Domaingroup.Create</reference>
-            </paragraph>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>
+                  <reference refuri="https://api.dnspod.com/Domaingroup.Create">https://api.dnspod.com/Domaingroup.Create</reference>
+                </paragraph>
+              </list_item>
+            </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2027,7 +2030,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2043,11 +2046,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>7 Invalid group name.</paragraph>
@@ -2064,7 +2067,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domaingroup.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;group_name=dnspod'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2084,7 +2087,7 @@
       </block_quote>
       <definition_list>
         <definition_list_item>
-          <term>Attention：</term>
+          <term>Attention:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2099,15 +2102,19 @@
       <title>Update a Domain Group</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
-            <paragraph>
-              <reference refuri="https://api.dnspod.com/Domaingroup.Modify">https://api.dnspod.com/Domaingroup.Modify</reference>
-            </paragraph>
+            <bullet_list bullet="*">
+              <list_item>
+                <paragraph>
+                  <reference refuri="https://api.dnspod.com/Domaingroup.Modify">https://api.dnspod.com/Domaingroup.Modify</reference>
+                </paragraph>
+              </list_item>
+            </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2117,7 +2124,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2137,11 +2144,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid group id.</paragraph>
@@ -2161,7 +2168,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domaingroup.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;group_id=1985&amp;group_name=dnspodgroup'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2181,7 +2188,7 @@
       <title>Remove a Domain Group</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2193,7 +2200,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2203,7 +2210,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2218,11 +2225,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid group id.</paragraph>
@@ -2233,7 +2240,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domaingroup.Remove -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;group_id=1985'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2253,7 +2260,7 @@
       <title>Change a Domain's Group</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2265,7 +2272,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2275,7 +2282,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2298,11 +2305,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain id.</paragraph>
@@ -2316,7 +2323,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Changegroup -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;group_id=1985'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2333,7 +2340,7 @@
       </block_quote>
       <definition_list>
         <definition_list_item>
-          <term>Directions：</term>
+          <term>Directions:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2351,7 +2358,7 @@
       <title>Mark a Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2363,7 +2370,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2373,7 +2380,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2397,11 +2404,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain id.</paragraph>
@@ -2412,7 +2419,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Ismark -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;is_mark=yes'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2432,7 +2439,7 @@
       <title>Remark a Domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2444,7 +2451,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2454,7 +2461,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2478,11 +2485,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain id.</paragraph>
@@ -2493,7 +2500,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Remark -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2059079&amp;remark=这个域名需要备注一下'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2513,7 +2520,7 @@
       <title>Get the Email Address Needed to Get Domain Back</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2525,7 +2532,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2535,7 +2542,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2551,11 +2558,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain</paragraph>
@@ -2567,7 +2574,7 @@
                 <paragraph>8 Invalid domain.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>9 Domains that end with &quot;.tk&quot; are not supported.No offence.</paragraph>
+                <paragraph>9 Domains that end with &quot;.tk&quot; are not supported.No offense.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>10 Domain not exists.</paragraph>
@@ -2579,10 +2586,10 @@
                 <paragraph>12 Domain got locked.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>13 You can't get a domain back from a company account to a persional account.</paragraph>
+                <paragraph>13 You can't get a domain back from a company account to a personal account.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>14 You can't get a domain back from a persional account to a company account.</paragraph>
+                <paragraph>14 You can't get a domain back from a personal account to a company account.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>15 Fail to get email address.Maybe there's something wrong with the network or the domain doesn't support.</paragraph>
@@ -2593,7 +2600,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Acquire -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain=api4.com'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2617,12 +2624,11 @@
       <title>Send Verify Code for Getting Domain Back</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Domain.Acquiresend">https://api.dnspod.com/Domain.Acquiresend</reference>
                 </paragraph>
               </list_item>
@@ -2630,7 +2636,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2640,7 +2646,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2662,11 +2668,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain.</paragraph>
@@ -2678,7 +2684,7 @@
                 <paragraph>8 Invalid domain.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>9 Domains end with &quot;.tk&quot; are not supported.No offence.</paragraph>
+                <paragraph>9 Domains end with &quot;.tk&quot; are not supported.No offense.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>10 Domain not exists.</paragraph>
@@ -2690,10 +2696,10 @@
                 <paragraph>12 Domain got locked.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>13 You can't get a domain back from a company account to a persional account.</paragraph>
+                <paragraph>13 You can't get a domain back from a company account to a personal account.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>14 You can't get a domain back from a persional account to a company account.</paragraph>
+                <paragraph>14 You can't get a domain back from a personal account to a company account.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>15 Fail to get email address.Maybe there's something wrong with the network or the domain doesn't support.</paragraph>
@@ -2707,31 +2713,27 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Acquiresend -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain=api4.com&amp;email=support@namecheap.com'</literal_block>
-      <definition_list>
-        <definition_list_item>
-          <term>Response：</term>
-          <definition>
-            <bullet_list bullet="*">
-              <list_item>
-                <paragraph>JSON:</paragraph>
-                <literal_block xml:space="preserve">{
+      <paragraph>Response Example:</paragraph>
+      <block_quote>
+        <bullet_list bullet="*">
+          <list_item>
+            <paragraph>JSON:</paragraph>
+            <literal_block xml:space="preserve">{
     &quot;status&quot;: {
         &quot;code&quot;: &quot;1&quot;,
         &quot;message&quot;: &quot;Action completed successful&quot;,
         &quot;created_at&quot;: &quot;2012-09-23 18:07:44&quot;
     }
 }</literal_block>
-              </list_item>
-            </bullet_list>
-          </definition>
-        </definition_list_item>
-      </definition_list>
+          </list_item>
+        </bullet_list>
+      </block_quote>
     </section>
     <section ids="verify-the-verify-code" names="verify\ the\ verify\ code">
       <title>Verify the Verify Code</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2743,7 +2745,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2753,7 +2755,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2775,23 +2777,23 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>7 No Chinnese characters allowed.</paragraph>
+                <paragraph>7 No Chinese characters allowed.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>8 Invalid domain.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>9 Domains end with &quot;.tk&quot; are not supported.No offence.</paragraph>
+                <paragraph>9 Domains end with &quot;.tk&quot; are not supported.No offense.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>10 Domain not exists.</paragraph>
@@ -2803,10 +2805,10 @@
                 <paragraph>12 Domain got locked.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>13 You can't get a domain back from a company account to a persional account.</paragraph>
+                <paragraph>13 You can't get a domain back from a company account to a personal account.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>14 You can't get a domain back from a persional account to a company account.</paragraph>
+                <paragraph>14 You can't get a domain back from a personal account to a company account.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>15 Wrong code.</paragraph>
@@ -2820,7 +2822,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Domain.Acquirevalidate -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain=api4.com&amp;code=111000'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2840,12 +2842,11 @@
       <title>Get All the Record Types for a Domain Grade</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Type">https://api.dnspod.com/Record.Type</reference>
                 </paragraph>
               </list_item>
@@ -2853,7 +2854,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2863,7 +2864,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2879,11 +2880,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain grade.</paragraph>
@@ -2894,7 +2895,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Type -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_grade=DP_Free'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -2915,7 +2916,7 @@
         &quot;SRV&quot;,
         &quot;URL&quot;,
         &quot;Framed URL&quot;
-    ],
+    ]
 }</literal_block>
           </list_item>
         </bullet_list>
@@ -2925,12 +2926,11 @@
       <title>Get All the Lines Allowed for a Domain Grade</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Line">https://api.dnspod.com/Record.Line</reference>
                 </paragraph>
               </list_item>
@@ -2938,7 +2938,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2948,7 +2948,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -2972,11 +2972,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain grade.</paragraph>
@@ -2987,7 +2987,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Line -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_grade=DP_Free&amp;domain=dnspod.com'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>

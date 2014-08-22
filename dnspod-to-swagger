@@ -33,15 +33,20 @@ class DocumentSettings:
 		self.id_prefix = ""
 
 
+class Parameter( object ):
+
+class Parameters( object ):
+
+
+class Method( object ):
+
+
 
 class DocumentProcessor( object ):
 
 	class State( object ):
 		def __init__( self ):
 			return
-
-	def __init__( self ):
-		return
 
 	@staticmethod
 	def check( condition, message, *, asrt=False ):
@@ -62,27 +67,30 @@ class DocumentProcessor( object ):
 			DocumentProcessor.check( count( len( result ) ), "{}:xpath query [{}] got {} results, expected something else".format( msg, path, len( result ) ) )
 		return result;
 
+	def __init__( self ):
+		self.global_parameters = []
+		self.common_response_codes = []
+		return
+
 	def process( self, root ):
-		#URL：
-		#API Address：
-		#api_section_path = ".//section[ ( definition_list/definition_list_item/term = 'URL：' ) or ( definition_list/definition_list_item/term = 'API Address：' ) ]"
-		#api_section_path = "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( section/definition_list/definition_list_item/term, 'API Address' ) ) ]"
-		#verbose_write( 1, "api_section_path = {}".format( api_section_path ) )
-		#verbose_write( 3, "api_sections = {}".format( [ lxml.etree.tostring( api_section ) for api_section in api_sections ] ) )
-		#api_sections = root.getroottree().xpath( api_section_path )
-		api_sections = self.xpath( root.getroottree(), "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( section/definition_list/definition_list_item/term = 'API Address：' ) ]", must_exist = True, msg="looking for api sections inside document" )
+		api_sections = self.xpath( root.getroottree(), "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( section/definition_list/definition_list_item/term = 'URL:' ) ]", must_exist = False, msg="looking for api sections inside document" )
 		if api_sections is not None:
 			for api_section in api_sections:
 				self.process_api_section( api_section )
+
+		global_parameters = self.xpath( root.getroottree(), "//section[ title = 'Global Parameters' ]/definition_list/definition_list_item/definition/bullet_list/list_item/paragraph", must_exist = False, msg="looking for global_parameters inside document" )
+		verbose_write( 0, "global_parameters = {}".format( [ lxml.etree.tostring( global_parameter ).decode( "utf-8" ) for global_parameter in global_parameters ] ) )
+		self.global_parameters += global_parameters
+
+		common_response_codes = self.xpath( root.getroottree(), "//section[ title = 'Common Response Codes' ]/definition_list/definition_list_item/definition/bullet_list/list_item/paragraph", must_exist = False, msg="looking for common_response_codes inside document" )
+		verbose_write( 0, "common_response_codes = {}".format( [ lxml.etree.tostring( common_response_code ).decode( "utf-8" ) for common_response_code in common_response_codes ] ) )
+		self.common_response_codes += common_response_codes
+
 		return
 	
 	def process_api_section( self, api_section ):
 		verbose_write( 3, "api_section = {}".format( lxml.etree.tostring( api_section ).decode( "utf-8" ) ) )
 
-		#method_section_path = "./section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]"
-		#verbose_write( 1, "method_section_path = {}".format( method_section_path ) )
-		#method_sections = api_section.xpath( method_section_path )
-		#self.check( method_sections is not None, "xpath query [ {} ] did not yield results.".format( method_section_path ), asrt=True )
 		method_sections = self.xpath( root.getroottree(), "./section/section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for method sections inside api section" )
 		for method_section in method_sections:
 			self.process_method_section( method_section )
@@ -90,10 +98,24 @@ class DocumentProcessor( object ):
 
 	def process_method_section( self, method_section ):
 		verbose_write( 2, "method_section = {}".format( lxml.etree.tostring( method_section ).decode( "utf-8" ) ) )
-		definition_list = self.xpath( method_section, "./definition_list", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for definition_list inside method section" )[ 0 ]
-		url = self.xpath( definition_list, "./definition_list_item[ starts-with( term, 'URL' ) or starts-with( term, 'API Address' ) ]/definition/bullet_list/list_item/paragraph/reference/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for url in definition_list" )[ 0 ]
-		verbose_write( 1, "url = {}".format( url ) )
+		definition_list = self.xpath( method_section, "./definition_list", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for definition_list inside method section" )[ 0 ]
+		url = self.xpath( definition_list, "./definition_list_item[ starts-with( term, 'URL' ) or starts-with( term, 'API Address' ) ]/definition//paragraph/reference/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for url in definition_list" )[ 0 ]
+		verbose_write( 0, "url = {}".format( url ) )
+
+		http_method = self.xpath( definition_list, "./definition_list_item[ starts-with( term, 'Method' ) or starts-with( term, 'HTTP Request Type' ) or starts-with( term, 'HTTP Resquest Type' ) ]/definition//paragraph/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for http method in definition_list" )[ 0 ]
+		verbose_write( 0, "http_method = {}".format( http_method ) )
+
+		request_parameters = self.xpath( definition_list, "./definition_list_item[ starts-with( term, 'Request Parameters' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for request parameters in definition_list" )
+		verbose_write( 0, "request_parameters = {}".format( [ lxml.etree.tostring( request_parameter ).decode( "utf-8" ) for request_parameter in request_parameters ] ) )
+
+		response_codes = self.xpath( definition_list, "./definition_list_item[ starts-with( term, 'Response Code' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for request parameters in definition_list" )
+		verbose_write( 0, "response_codes = {}".format( [ lxml.etree.tostring( response_code ).decode( "utf-8" ) for response_code in response_codes ] ) )
+
+		response_example = json.loads( self.xpath( method_section, "./paragraph[ text() = 'Response Example:' ]/following::block_quote[1]//literal_block/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for response example in definition_list" )[ 0 ] )
+		verbose_write( 0, "response_example = {}".format( json.dumps( response_example ) ) )
+
 		return
+
 	
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@
       <title>Get Account Information</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -18,7 +18,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -28,7 +28,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -38,11 +38,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -50,7 +50,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/User.Detail -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
-      <paragraph>Response Example：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -88,7 +88,7 @@
       <title>Update Information</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -100,7 +100,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -110,11 +110,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -144,11 +144,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>8 Invalid phone number.</paragraph>
@@ -162,7 +162,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/User.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;im=10000000'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -182,7 +182,7 @@
       <title>Change Password</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -194,7 +194,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -204,7 +204,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -226,11 +226,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>8 Wrong old password.</paragraph>
@@ -244,7 +244,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Userpassword.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;old_password=old_password&amp;new_password=new_password'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -264,7 +264,7 @@
       <title>Update Email Address</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -276,7 +276,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>HTTP Resquest Type：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -286,7 +286,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -314,11 +314,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common Response Code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>8 Old email address is not correct.</paragraph>
@@ -335,7 +335,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Useremail.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;old_email=api1@dnspod.com&amp;new_email=api@dnspod.com&amp;password=password'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -355,7 +355,7 @@
       <title>Get The Account's Operate Log</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -367,7 +367,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -377,7 +377,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -387,11 +387,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -399,7 +399,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/User.Log -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>

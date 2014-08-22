@@ -6,7 +6,7 @@
       <title>Add a Record</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -18,7 +18,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -28,11 +28,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -67,7 +67,7 @@
               <list_item>
                 <paragraph>
                   <strong>mx</strong>
-                   {1-20} This only need to and must be seted when record_type is &quot;MX&quot;.Range from 1 to 20.
+                   {1-20} This only need to and must be set when record_type is &quot;MX&quot;.Range from 1 to 20.
                 </paragraph>
               </list_item>
               <list_item>
@@ -80,11 +80,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -93,7 +93,7 @@
                 <paragraph>-7 A upgrade for the company account is needed before this.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>-8 You need a upgrae for the domain you are acting for.</paragraph>
+                <paragraph>-8 You need a upgrade for the domain you are acting for.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Lack of parameters or something wrong with it.</paragraph>
@@ -108,7 +108,7 @@
                 <paragraph>22 Invalid sub_domain.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>23 Sub domain level is up to limie.</paragraph>
+                <paragraph>23 Sub domain level is up to limit.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>24 Invalid sub domain for general analysis.</paragraph>
@@ -146,7 +146,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Create -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;sub_domain=@&amp;record_type=A&amp;record_line=default&amp;value=1.1.1.1'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -171,7 +171,7 @@
       <title>Get Record List</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -183,7 +183,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -193,11 +193,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -220,18 +220,18 @@
               <list_item>
                 <paragraph>
                   <strong>sub_domain</strong>
-                   If the subsidiary domain is set,only the information about it will be responsed.
+                   If the subsidiary domain is set,only the information about it will be responded.
                 </paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-7 A domain of a company account need a upgrade first.</paragraph>
@@ -258,11 +258,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Attention：</term>
+          <term>Attention:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>If there are more than 500 records,only the first 500 will be responsed.You may need to set &quot;offset&quot; and &quot;length&quot; to get all the records with requests.</paragraph>
+                <paragraph>If there are more than 500 records,only the first 500 will be responded.You may need to set &quot;offset&quot; and &quot;length&quot; to get all the records with requests.</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -270,7 +270,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -376,12 +376,11 @@
       <title>Update a Record</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Modify">https://api.dnspod.com/Record.Modify</reference>
                 </paragraph>
               </list_item>
@@ -389,7 +388,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -399,11 +398,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -444,7 +443,7 @@
               <list_item>
                 <paragraph>
                   <strong>mx</strong>
-                   {1-20} This only need to and must be seted when record_type is &quot;MX&quot;.Range from 1 to 20.
+                   {1-20} This only need to and must be set when record_type is &quot;MX&quot;.Range from 1 to 20.
                 </paragraph>
               </list_item>
               <list_item>
@@ -457,11 +456,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -521,7 +520,7 @@
                 <paragraph>34 Invalid record value.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>35 The IP is not allowd.</paragraph>
+                <paragraph>35 The IP is not allowed.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>36 When the sub_domain is &quot;@&quot; and the record_type is &quot;NS&quot;,the record_line can only be &quot;default&quot;.</paragraph>
@@ -532,7 +531,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16894439&amp;sub_domain=www&amp;value=3.2.2.2&amp;record_type=A&amp;record_line=default'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -557,12 +556,11 @@
       <title>Remove a Record</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Remove">https://api.dnspod.com/Record.Remove</reference>
                 </paragraph>
               </list_item>
@@ -570,7 +568,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -580,11 +578,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -602,11 +600,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -635,7 +633,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Remove -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16894439'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -655,12 +653,11 @@
       <title>Update the Dynamic DNS Record</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Ddns">https://api.dnspod.com/Record.Ddns</reference>
                 </paragraph>
               </list_item>
@@ -668,7 +665,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -678,11 +675,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -718,11 +715,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -766,7 +763,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Ddns -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16894439&amp;record_line=default&amp;sub_domain=www'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -791,12 +788,11 @@
       <title>Remark a Record</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Remark">https://api.dnspod.com/Record.Remark</reference>
                 </paragraph>
               </list_item>
@@ -804,7 +800,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -814,11 +810,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -842,11 +838,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain id.</paragraph>
@@ -860,7 +856,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Remark -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16894439&amp;remark=test'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -876,16 +872,20 @@
         </bullet_list>
       </block_quote>
     </section>
-    <section ids="get-the-record-informtion" names="get\ the\ record\ informtion">
-      <title>Get the Record Informtion</title>
+    <section ids="get-the-record-information" names="get\ the\ record\ information">
+      <title>Get the Record Information</title>
+      <system_message level="2" line="369" source="dnspod-intl-rst/records.rst" type="WARNING">
+        <paragraph>Title underline too short.</paragraph>
+        <literal_block xml:space="preserve">Get the Record Information
+-------------------------</literal_block>
+      </system_message>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Info">https://api.dnspod.com/Record.Info</reference>
                 </paragraph>
               </list_item>
@@ -893,7 +893,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -903,11 +903,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -925,11 +925,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -955,7 +955,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Info -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16894439'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -994,12 +994,11 @@
       <title>Set the Record Status</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Record.Status">https://api.dnspod.com/Record.Status</reference>
                 </paragraph>
               </list_item>
@@ -1007,7 +1006,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1017,11 +1016,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -1045,11 +1044,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-15 Domain got prohibited.</paragraph>
@@ -1078,7 +1077,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Record.Status -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16894439&amp;status=disable'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>

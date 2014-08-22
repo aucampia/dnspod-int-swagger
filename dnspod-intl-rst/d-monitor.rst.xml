@@ -6,12 +6,11 @@
       <title>List All the Sub-domains Whose Type Is &quot;A&quot;</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Listsubdomain">https://api.dnspod.com/Monitor.Listsubdomain</reference>
                 </paragraph>
               </list_item>
@@ -19,7 +18,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -29,11 +28,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -47,11 +46,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Domain not exists.</paragraph>
@@ -68,7 +67,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Listsubdomain -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -98,12 +97,11 @@
       <title>List All the &quot;A&quot; Records for a Sub-domain</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Listsubvalue">https://api.dnspod.com/Monitor.Listsubvalue</reference>
                 </paragraph>
               </list_item>
@@ -111,7 +109,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -121,11 +119,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -145,11 +143,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Domain not exists.</paragraph>
@@ -163,7 +161,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Listsubvalue -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;subdomain=@'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -207,12 +205,11 @@
       <title>Get the Monitor List</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.List">https://api.dnspod.com/Monitor.List</reference>
                 </paragraph>
               </list_item>
@@ -220,7 +217,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -230,21 +227,21 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -252,7 +249,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.List -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -311,12 +308,11 @@
       <title>Add a Monitor</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Create">https://api.dnspod.com/Monitor.Create</reference>
                 </paragraph>
               </list_item>
@@ -324,7 +320,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -334,11 +330,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -423,7 +419,7 @@
               <list_item>
                 <paragraph>
                   <strong>keep_ttl</strong>
-                   TTL won't be changed if this is seted up.Essential parameter.
+                   TTL won't be changed if this is set.Essential parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -441,7 +437,7 @@
               <list_item>
                 <paragraph>
                   <strong>less_notice</strong>
-                   {yes|no} Whether to just send one notice withen one hour.Essential parameter.
+                   {yes|no} Whether to just send one notice within one hour.Essential parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -453,18 +449,18 @@
               <list_item>
                 <paragraph>
                   <strong>callback_key</strong>
-                   The callback key.If &quot;callback_url&quot; is set up,you shoul set this up too for sucurety.
+                   The callback key.If &quot;callback_url&quot; is set up,you should set this up too for security.
                 </paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid domain id.</paragraph>
@@ -497,7 +493,7 @@
                 <paragraph>15 Invalid backup IP.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>16 Invalid bakcup url.</paragraph>
+                <paragraph>16 Invalid backup url.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>17 Invalid backup IP.</paragraph>
@@ -523,7 +519,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Create -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;record_id=16909160&amp;port=80&amp;monitor_type=http&amp;monitor_path=/&amp;monitor_interval=360&amp;points=ctc,cuc,cmc&amp;bak_ip=pass&amp;host=testapi.com'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -547,12 +543,11 @@
       <title>Modify a Monitor</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Modify">https://api.dnspod.com/Monitor.Modify</reference>
                 </paragraph>
               </list_item>
@@ -560,7 +555,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -570,11 +565,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -585,7 +580,7 @@
               <list_item>
                 <paragraph>
                   <strong>port</strong>
-                   The port number to minitor like 80.Essential parameter.
+                   The port number to monitor like 80.Essential parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -634,7 +629,7 @@
                           <paragraph>pause2 The intelligent pause who pause the record immediately when the IP is down.</paragraph>
                         </list_item>
                         <list_item>
-                          <paragraph>auto Switch intellgently.</paragraph>
+                          <paragraph>auto Switch intelligently.</paragraph>
                         </list_item>
                         <list_item>
                           <paragraph>IP addresses split by &quot;,&quot;.</paragraph>
@@ -653,7 +648,7 @@
               <list_item>
                 <paragraph>
                   <strong>keep_ttl</strong>
-                   TTL won't be changed if this is seted up.Essential parameter.
+                   TTL won't be changed if this is set.Essential parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -671,7 +666,7 @@
               <list_item>
                 <paragraph>
                   <strong>less_notice</strong>
-                   {yes|no} Whether to just send one notice withen one hour.Essential parameter.
+                   {yes|no} Whether to just send one notice within one hour.Essential parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -683,18 +678,18 @@
               <list_item>
                 <paragraph>
                   <strong>callback_key</strong>
-                   The callback key.If &quot;callback_url&quot; is set up,you shoul set this up too for sucurety.
+                   The callback key.If &quot;callback_url&quot; is set up,you should set this up too for security.
                 </paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>7 Invalid monitor id.</paragraph>
@@ -724,7 +719,7 @@
                 <paragraph>15 Invalid backup IP.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>16 Invalid bakcup url.</paragraph>
+                <paragraph>16 Invalid backup url.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>17 Invalid backup IP.</paragraph>
@@ -744,7 +739,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;domain_id=2317346&amp;monitor_id=51fc9a20-363c-11e2-bab7-0819a6248970&amp;port=80&amp;monitor_type=http&amp;monitor_path=/&amp;monitor_interval=360&amp;points=ctc,cuc,cmc&amp;bak_ip=pass'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -764,12 +759,11 @@
       <title>Remove a Monitor</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Remove">https://api.dnspod.com/Monitor.Remove</reference>
                 </paragraph>
               </list_item>
@@ -777,7 +771,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -787,11 +781,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -803,11 +797,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid monitor id.</paragraph>
@@ -818,7 +812,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Modify -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;monitor_id=51fc9a20-363c-11e2-bab7-0819a6248970'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -838,7 +832,7 @@
       <title>Get the Monitor Information</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -850,7 +844,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -860,11 +854,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -876,11 +870,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>7 Invalid monitor id.</paragraph>
@@ -891,7 +885,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Info -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;monitor_id=e91997aa-3641-11e2-bab7-0819a6248970'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -940,12 +934,11 @@
       <title>Set a Monitor's Status</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Setstatus">https://api.dnspod.com/Monitor.Setstatus</reference>
                 </paragraph>
               </list_item>
@@ -953,7 +946,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -963,11 +956,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -985,11 +978,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid monitor id.</paragraph>
@@ -1007,11 +1000,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid monitor id.</paragraph>
@@ -1022,7 +1015,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Setstatus -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;monitor_id=03e3b268-3643-11e2-bab7-0819a6248970&amp;status=disable'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1042,12 +1035,11 @@
       <title>Get a Monitor's History</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Gethistory">https://api.dnspod.com/Monitor.Gethistory</reference>
                 </paragraph>
               </list_item>
@@ -1055,7 +1047,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1065,11 +1057,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -1087,11 +1079,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
                 <paragraph>6 Invalid monitor id.</paragraph>
@@ -1102,7 +1094,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Setstatus -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;monitor_id=03e3b268-3643-11e2-bab7-0819a6248970&amp;hours=1'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1233,7 +1225,7 @@
       <title>Get a Monitor's Description</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1245,7 +1237,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1255,21 +1247,21 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -1277,7 +1269,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Userdesc -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -1306,12 +1298,11 @@
       <title>Get a Monitor's Warnings</title>
       <definition_list>
         <definition_list_item>
-          <term>URL：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
-                   
                   <reference refuri="https://api.dnspod.com/Monitor.Getdowns">https://api.dnspod.com/Monitor.Getdowns</reference>
                 </paragraph>
               </list_item>
@@ -1319,7 +1310,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Method：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -1329,11 +1320,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
               <list_item>
                 <paragraph>
@@ -1351,11 +1342,11 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response code.</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -1363,7 +1354,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Monitor.Getdowns -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json&amp;offset=0&amp;length=10'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>

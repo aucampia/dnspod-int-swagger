@@ -58,4 +58,8 @@ SyntaxError: invalid predicate
 
 xmllint --xpath "//section[ ( definition_list/definition_list_item/term = 'URL：' ) or ( definition_list/definition_list_item/term = 'API Address：' ) ]" dnspod-intl-rst/accounts.rst.xml
 
+grep -h '//api.dnspod.com' dnspod-intl-rst/*.rst | grep -v curl | sed 's/^.*\(http.*\)/\1/g' > list1
+./dnspod-to-swagger -v -v dnspod-intl-rst/*.rst 2>&1 | grep 'url =' | sed 's/^.*\(http.*\)/\1/g' > list2
+diff list1 list2
+
 ----

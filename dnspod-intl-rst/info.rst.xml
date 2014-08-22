@@ -3,7 +3,7 @@
   <section ids="api-explanation" names="api\ explanation">
     <title>API Explanation</title>
     <paragraph>
-      1. DNSPod Users' API,aim to help the users to manage their domains conveniently,are limited to persional users to use.
+      1. DNSPod Users' API,aim to help the users to manage their domains conveniently,are limited to personal users to use.
 3. No third-party applications or users are allowed to use this API. If you have needs,please let us know: 
       <reference refuri="https://www.dnspod.com/About/Aboutus">https://www.dnspod.com/About/Aboutus</reference>
        .
@@ -14,7 +14,7 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>Misuse：</term>
+              <term>Misuse:</term>
               <definition>
                 <definition_list>
                   <definition_list_item>
@@ -37,7 +37,7 @@
                     </definition>
                   </definition_list_item>
                 </definition_list>
-                <paragraph>In order to ensure you and other developers' benifits,please use our APIs legitimately. DNSPod will punish the behaviors like API misuse by prohibit the accounts and reserve all the rights to arbitate.`</paragraph>
+                <paragraph>In order to ensure you and other developers' benefits,please use our APIs legitimately. DNSPod will punish the behaviors like API misuse by prohibit the accounts and reserve all the rights to arbitrate.`</paragraph>
               </definition>
             </definition_list_item>
           </definition_list>
@@ -45,7 +45,7 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>Login Disable：</term>
+              <term>Login Disable:</term>
               <definition>
                 <paragraph>If there are more than 30 login failures within 5 minutes,the account will be disabled to login again for an hour. Please check the login status when you develop your own applications,and stop trying if fails.</paragraph>
               </definition>
@@ -55,7 +55,7 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>Prohibition：</term>
+              <term>Prohibition:</term>
               <definition>
                 <paragraph>Even got prohibited,you can still use it on the official website. The prohibition will be relieved an hour later.Please be careful and never use it for large tests.</paragraph>
               </definition>
@@ -65,7 +65,7 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>Requests：</term>
+              <term>Requests:</term>
               <definition>
                 <bullet_list bullet="*">
                   <list_item>
@@ -89,11 +89,11 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>UserAgent：</term>
+              <term>UserAgent:</term>
               <definition>
                 <bullet_list bullet="*">
                   <list_item>
-                    <paragraph>The UserAgent must be seted. Prohibition may caused by wrong UserAgent or none.</paragraph>
+                    <paragraph>The UserAgent must be set. Prohibition may caused by wrong UserAgent or none.</paragraph>
                   </list_item>
                   <list_item>
                     <paragraph>UserAgent Format:Application Name/Version(email). For example:&quot;MJJ DDNS Client/1.0.0 (shallwedance@dnspod.com)&quot;.</paragraph>
@@ -106,7 +106,7 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>Security：</term>
+              <term>Security:</term>
               <definition>
                 <paragraph>Almost every step needs the email address and the password. So if you have to storage the user's informations,please encrypt the password first. Never storage the password directly.</paragraph>
               </definition>
@@ -116,7 +116,7 @@
         <list_item>
           <definition_list>
             <definition_list_item>
-              <term>Support：</term>
+              <term>Support:</term>
               <definition>
                 <bullet_list bullet="*">
                   <list_item>
@@ -140,30 +140,35 @@
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>login_email The login email.Essential parameter.</paragraph>
+                <paragraph>
+                  <strong>format</strong>
+                   {json,xml} The format of response.Default &quot;xml&quot;. &quot;json&quot; is highly recommended.Optional parameter.
+                </paragraph>
               </list_item>
               <list_item>
-                <paragraph>login_password The login password.Essential parameter.</paragraph>
+                <paragraph>
+                  <strong>error_on_empty</strong>
+                   {yes,no} Whether to response an error when there's no results.
+                </paragraph>
               </list_item>
               <list_item>
-                <paragraph>format {json,xml} The format of response.Default &quot;xml&quot;. &quot;json&quot; is highly recommended.Optional parameter.</paragraph>
-              </list_item>
-              <list_item>
-                <paragraph>error_on_empty {yes,no} Whether to response an error when there's no results.</paragraph>
-              </list_item>
-              <list_item>
-                <paragraph>user_id The user's ID. A must for agent users, and a waste for regular users.</paragraph>
+                <paragraph>
+                  <strong>user_token</strong>
+                   The user token obtained with the 
+                  <literal>Auth</literal>
+                   command.
+                </paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
       </definition_list>
     </section>
-    <section ids="common-response-code" names="common\ response\ code">
-      <title>Common Response Code</title>
+    <section ids="common-response-codes" names="common\ response\ codes">
+      <title>Common Response Codes</title>
       <definition_list>
         <definition_list_item>
-          <term>Those responses codes could be in any API beacuse they are the common responses.</term>
+          <term>Those responses codes could be in any API because they are the common responses.</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -185,7 +190,7 @@
                 <paragraph>-8 Account got prohibited.</paragraph>
               </list_item>
               <list_item>
-                <paragraph>85 Account logined in another place and your request got rejected.</paragraph>
+                <paragraph>85 Account logged-on in another place and your request got rejected.</paragraph>
               </list_item>
               <list_item>
                 <paragraph>-99 This API is not ready to be used.No rush.</paragraph>
@@ -215,7 +220,7 @@
       <paragraph>Before you use the APIs, you need get a user-token first by this one.</paragraph>
       <definition_list>
         <definition_list_item>
-          <term>API Address：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -227,7 +232,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>HTTP Request Type：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -237,24 +242,51 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters.</paragraph>
+                <paragraph>
+                  <strong>login_email</strong>
+                   The login email.Essential parameter.
+                </paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>
+                  <strong>login_password</strong>
+                   The login password.Essential parameter.
+                </paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>
+                  <strong>login_code</strong>
+                   The code that generated by the D-Token.Essential parameter.
+                </paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>
+                  <strong>login_remember</strong>
+                   {yes,no} Whether to remember the D-Token code.Default &quot;yes&quot;.
+                </paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>
+                  <strong>user_id</strong>
+                   The user's ID. A must for agent users, and a waste for regular users.
+                </paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
               <list_item>
-                <paragraph>10001 User have been spamed</paragraph>
+                <paragraph>10001 User have been spammed</paragraph>
               </list_item>
               <list_item>
                 <paragraph>10003 Account email is invalid</paragraph>
@@ -271,7 +303,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Auth -d 'login_email=api@dnspod.com&amp;login_password=password&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
@@ -296,10 +328,16 @@
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>login_code The code that generated by the D-Token.Essential parameter.</paragraph>
+                <paragraph>
+                  <strong>login_code</strong>
+                   The code that generated by the D-Token.Essential parameter.
+                </paragraph>
               </list_item>
               <list_item>
-                <paragraph>login_remember {yes,no} Whether to remember the D-Token code.Default &quot;yes&quot;.</paragraph>
+                <paragraph>
+                  <strong>login_remember</strong>
+                   {yes,no} Whether to remember the D-Token code.Default &quot;yes&quot;.
+                </paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -311,7 +349,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>If you are using D-Token,this error codes might be responsed.</term>
+          <term>If you are using D-Token,this error codes might be responded.</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -338,7 +376,7 @@
       <title>Get the Version of API</title>
       <definition_list>
         <definition_list_item>
-          <term>API Address：</term>
+          <term>URL:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -350,7 +388,7 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>HTTP Request Type：</term>
+          <term>HTTP Request Type:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
@@ -360,21 +398,21 @@
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Request Parameters：</term>
+          <term>Request Parameters:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Global parameters.</paragraph>
+                <paragraph>Global Parameters</paragraph>
               </list_item>
             </bullet_list>
           </definition>
         </definition_list_item>
         <definition_list_item>
-          <term>Response Code：</term>
+          <term>Response Code:</term>
           <definition>
             <bullet_list bullet="*">
               <list_item>
-                <paragraph>Common response</paragraph>
+                <paragraph>Common Response Codes</paragraph>
               </list_item>
             </bullet_list>
           </definition>
@@ -382,7 +420,7 @@
       </definition_list>
       <paragraph>Example:</paragraph>
       <literal_block xml:space="preserve">curl -X POST https://api.dnspod.com/Info.Version -d 'user_token=730060,e1a8a$f14dc5dcbafd83680b3d2a553c4d553d&amp;format=json'</literal_block>
-      <paragraph>Response：</paragraph>
+      <paragraph>Response Example:</paragraph>
       <block_quote>
         <bullet_list bullet="*">
           <list_item>
