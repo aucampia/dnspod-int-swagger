@@ -39,7 +39,7 @@
                   <strong>domain</strong>
                    OR 
                   <strong>domain_id</strong>
-                   Stand for the domain name and the domain id.You only need to and must choose one of them.
+                   Stand for the domain name and the domain id. You only need to and must set one of them.
                 </paragraph>
               </list_item>
             </bullet_list>
@@ -130,13 +130,13 @@
                   <strong>domain</strong>
                    OR 
                   <strong>domain_id</strong>
-                   Stand for the domain name and the domain id.You only need to and must choose one of them.
+                   Stand for the domain name and the domain id. You only need to and must set one of them.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>subdomain</strong>
-                   The sub-domain.Essential parameter.
+                   The sub-domain. Mandatory parameter.
                 </paragraph>
               </list_item>
             </bullet_list>
@@ -339,49 +339,49 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>port</strong>
-                   The port number to monitor like 80.Essential parameter.
+                   The port number to monitor like 80. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>monitor_interval</strong>
-                   Monitoring spacing.Ranged {60|180|360|}.Essential parameter.
+                   Monitoring spacing.Ranged {60|180|360|}. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>host</strong>
-                   The host from the http header like &quot;www.dnspod.com&quot;.Essential parameter.
+                   The host from the http header like &quot;www.dnspod.com&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>monitor_type</strong>
-                   {http|https} The monitor type.Essential parameter.
+                   {http|https} The monitor type. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>monitor_path</strong>
-                   The request path from the http header like &quot;/&quot;.Essential parameter.
+                   The request path from the http header like &quot;/&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>points</strong>
-                   The points to use.Split by &quot;,&quot;.You can choose it from the list of your own grade.Essential parameter.
+                   The points to use.Split by &quot;,&quot;.You can choose it from the list of your own grade. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -419,13 +419,13 @@
               <list_item>
                 <paragraph>
                   <strong>keep_ttl</strong>
-                   TTL won't be changed if this is set.Essential parameter.
+                   TTL won't be changed if this is set. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>sms_notice</strong>
-                   &quot;me&quot; for the owner,and &quot;share&quot; for the shared users.Split by &quot;,&quot; if there are more than one like &quot;me,share&quot;.Essential parameter.
+                   &quot;me&quot; for the owner,and &quot;share&quot; for the shared users.Split by &quot;,&quot; if there are more than one like &quot;me,share&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -437,7 +437,7 @@
               <list_item>
                 <paragraph>
                   <strong>less_notice</strong>
-                   {yes|no} Whether to just send one notice within one hour.Essential parameter.
+                   {yes|no} Whether to just send one notice within one hour. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -574,37 +574,37 @@
               <list_item>
                 <paragraph>
                   <strong>monitor_id</strong>
-                   Monitor id.Essential parameter.
+                   Monitor id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>port</strong>
-                   The port number to monitor like 80.Essential parameter.
+                   The port number to monitor like 80. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>monitor_interval</strong>
-                   {60|180|360|} The monitor interval.Essential parameter.
+                   {60|180|360|} The monitor interval. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>monitor_type</strong>
-                   {http|https} The monitor type.Essential parameter.
+                   {http|https} The monitor type. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>monitor_path</strong>
-                   The path in the http header like &quot;/&quot;.Essential parameter.
+                   The path in the http header like &quot;/&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>points</strong>
-                   The points to use.Split by &quot;,&quot;.You can choose it from the list of your own grade.Essential parameter.
+                   The points to use.Split by &quot;,&quot;.You can choose it from the list of your own grade. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -642,19 +642,19 @@
               <list_item>
                 <paragraph>
                   <strong>host</strong>
-                   The host from the http header like &quot;www.dnspod.com&quot;.Essential parameter.
+                   The host from the http header like &quot;www.dnspod.com&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>keep_ttl</strong>
-                   TTL won't be changed if this is set.Essential parameter.
+                   TTL won't be changed if this is set. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>sms_notice</strong>
-                   &quot;me&quot; for the owner,and &quot;share&quot; for the shared users.Split by &quot;,&quot; if there are more than one like &quot;me,share&quot;.Essential parameter.
+                   &quot;me&quot; for the owner,and &quot;share&quot; for the shared users.Split by &quot;,&quot; if there are more than one like &quot;me,share&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -666,7 +666,7 @@
               <list_item>
                 <paragraph>
                   <strong>less_notice</strong>
-                   {yes|no} Whether to just send one notice within one hour.Essential parameter.
+                   {yes|no} Whether to just send one notice within one hour. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -965,13 +965,13 @@
               <list_item>
                 <paragraph>
                   <strong>monitor_id</strong>
-                   Monitor id.Essential parameter.
+                   Monitor id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>status</strong>
-                   {enabled|disabled} The new status.Essential status.
+                   {enabled|disabled} The new status. Mandatory parameter.
                 </paragraph>
               </list_item>
             </bullet_list>
@@ -1066,7 +1066,7 @@
               <list_item>
                 <paragraph>
                   <strong>monitor_id</strong>
-                   Monitor id.Essential parameter.
+                   Monitor id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>

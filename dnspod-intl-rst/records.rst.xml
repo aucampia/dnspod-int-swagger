@@ -37,7 +37,7 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -49,19 +49,19 @@
               <list_item>
                 <paragraph>
                   <strong>record_type</strong>
-                   The record type.You can get the list of all allowed types from the API.Capital letters like &quot;A&quot; or &quot;CNAME&quot;.Essential parameter.
+                   The record type.You can get the list of all allowed types from the API.Capital letters like &quot;A&quot; or &quot;CNAME&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_line</strong>
-                   The record line.You can get the list from the API.The default value is &quot;default&quot;, such as &quot;default&quot;, &quot;AD&quot;, &quot;AE&quot;. Essential parameter.
+                   The record line.You can get the list from the API.The default value is &quot;default&quot;, such as &quot;default&quot;, &quot;AD&quot;, &quot;AE&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>value</strong>
-                   The record value.For example: IP:200.200.200.200, CNAME: cname.dnspod.com., MX: mail.dnspod.com.Essential parameter.
+                   The record value.For example: IP:200.200.200.200, CNAME: cname.dnspod.com., MX: mail.dnspod.com. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -202,7 +202,7 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -407,13 +407,13 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -425,19 +425,19 @@
               <list_item>
                 <paragraph>
                   <strong>record_type</strong>
-                   The record type.You can get the list from the API.All capital letters like &quot;A&quot;.Essential parameter.
+                   The record type.You can get the list from the API.All capital letters like &quot;A&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_line</strong>
-                   The record line.You can get the list from the API.The default value is &quot;default&quot;, such as &quot;default&quot;, &quot;AD&quot;, &quot;AE&quot;. Essential parameter.
+                   The record line.You can get the list from the API.The default value is &quot;default&quot;, such as &quot;default&quot;, &quot;AD&quot;, &quot;AE&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>value</strong>
-                   The record value.For example: IP:200.200.200.200, CNAME: cname.dnspod.com., MX: mail.dnspod.com.Essential parameter.
+                   The record value.For example: IP:200.200.200.200, CNAME: cname.dnspod.com., MX: mail.dnspod.com. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -587,13 +587,13 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
             </bullet_list>
@@ -684,13 +684,13 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -702,7 +702,7 @@
               <list_item>
                 <paragraph>
                   <strong>record_line</strong>
-                   The record line.You can get the list from the API.The default value is &quot;default&quot;, such as &quot;default&quot;, &quot;AD&quot;, &quot;AE&quot;. Essential parameter.
+                   The record line.You can get the list from the API.The default value is &quot;default&quot;, such as &quot;default&quot;, &quot;AD&quot;, &quot;AE&quot;. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
@@ -819,19 +819,19 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>remark</strong>
-                   The remark information.Set it a empty string if you want to remove it.Essential parameter.
+                   The remark information.Set it a empty string if you want to remove it. Mandatory parameter.
                 </paragraph>
               </list_item>
             </bullet_list>
@@ -874,11 +874,6 @@
     </section>
     <section ids="get-the-record-information" names="get\ the\ record\ information">
       <title>Get the Record Information</title>
-      <system_message level="2" line="369" source="dnspod-intl-rst/records.rst" type="WARNING">
-        <paragraph>Title underline too short.</paragraph>
-        <literal_block xml:space="preserve">Get the Record Information
--------------------------</literal_block>
-      </system_message>
       <definition_list>
         <definition_list_item>
           <term>URL:</term>
@@ -912,13 +907,13 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
             </bullet_list>
@@ -1025,19 +1020,19 @@
               <list_item>
                 <paragraph>
                   <strong>domain_id</strong>
-                   The domain id.Essential parameter.
+                   The domain id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>record_id</strong>
-                   The record id.Essential parameter.
+                   The record id. Mandatory parameter.
                 </paragraph>
               </list_item>
               <list_item>
                 <paragraph>
                   <strong>status</strong>
-                   {enable|disable} The new status.Essential parameter.
+                   {enable|disable} The new status. Mandatory parameter.
                 </paragraph>
               </list_item>
             </bullet_list>

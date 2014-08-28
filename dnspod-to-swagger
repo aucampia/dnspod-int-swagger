@@ -16,7 +16,28 @@ import json
 
 import locale
 
-import lxml.etree 
+import lxml.etree
+
+import urllib.parse
+
+import posixpath
+
+import re
+
+
+def urlpath_parse( path_string, *, normalize ):
+	result = []
+
+	if normalize:
+		tmp = posixpath.normpath( path_string )
+	else:
+		tmp = path_string
+
+	while tmp != "/":
+		( tmp, item ) = posixpath.split( tmp )
+		result.insert( 0, urllib.parse.unquote( item ) )
+
+	return result
 
 class DocumentSettings:
 	def __init__( self ):
@@ -33,13 +54,241 @@ class DocumentSettings:
 		self.id_prefix = ""
 
 
+def check( condition, message, *, asrt=False ):
+	if not condition:
+		if asrt and not __debug__: raise AssertionError( message )
+		raise RuntimeError( message )
+	return
+
+def xpath( element, path, *, count=None, must_exist, asrt=False, msg="" ):
+	verbose_write( 3, "{}:element = {}".format( msg, lxml.etree.tostring( element ).decode( "utf-8" ) ), stack_depth=2 )
+	verbose_write( 1, "{}:xpath = {}".format( msg, path ), stack_depth=2 )
+	result = element.xpath( path )
+	result_length = 1 
+	if isinstance( result, list ):
+		result_length = len( result )
+	verbose_write( 2, "{}:result = {}, len( result ) = {}".format( msg, result, result_length ), stack_depth=2 )
+	if must_exist:
+		check( ( result is not None ) and ( result_length > 0 ), "{}:xpath query [{}] did not yield results.".format( msg, path ) )
+	if count is not None:
+		check( count( result_length ), "{}:xpath query [{}] got {} results, expected something else".format( msg, path, result_length ) )
+	return result;
+
+class ResponseCode( object ):
+
+	regex = re.compile( '^(-?[0-9]+)(.*)$', re.IGNORECASE )
+
+	def __init__( self, response_codes, *, code=None, description=None, element=None ):
+		self.response_codes = response_codes
+		self.code = code
+		self.description = None
+		if description is not None:
+			self.description = description.strip()
+		if element is not None:
+			self.process_element( element )
+		return
+
+	def process_element( self, element ):
+		verbose_write( 0, "element = [{}]".format( lxml.etree.tostring( element ).decode( "utf-8" ) ) )
+		regex_result = ResponseCode.regex.match( element.text )
+		check( regex_result, "response code [{}] element did not match regex".format( lxml.etree.tostring( element ).decode( "utf-8" ) ) )
+		self.code = regex_result.group( 1 )
+		self.description = regex_result.group( 2 ).strip()
+		self.verbose_write()
+		return
+	
+	def verbose_write( self ):
+		verbose_write( 0, "code = [{}]".format( self.code ) )
+		verbose_write( 0, "description = [{}]".format( self.description ) )
+		
+	
+
+class ResponseCodes( object ):
+
+	def __init__( self, method ):
+		self.method = method
+		self.response_code_list = []
+		self.include_common = []
+		return
+
+	def new_response_code( self, *args, **kwargs ):
+		return ResponseCode( self, *args, **kwargs )
+
+	def add_elements( self, response_codes ):
+		for response_code_element in response_codes:
+			if response_code_element.text == "Common Response Codes":
+				self.include_common.append( "global" )
+			else:
+				self.response_code_list + self.process_response_code_element( response_code_element )
+		return
+
+	def process_response_code_element( self, response_code_element ):
+		return [ self.new_response_code( element=response_code_element ) ]
+
+
 class Parameter( object ):
+
+	def __init__( self, parameters, *, name=None, description=None, mandatory=False, xor_parameter_list=[] ):
+		self.mandatory = mandatory
+		self.name = name
+		self.description = None
+		if description is not None:
+			self.description = description.strip()
+		self.parameters = parameters
+		self.xor_parameter_list = xor_parameter_list
+		#if parameter_element is not None:
+		#	self.process_parameter_element( parameter_element )
+		return
+		
+	def verbose_write( self ):
+		verbose_write( 0, "name = [{}]".format( self.name ) )
+		verbose_write( 0, "description = [{}]".format( self.description ) )
+		verbose_write( 0, "mandatory = [{}]".format( self.mandatory ) )
+		verbose_write( 0, "xor_parameter_list = [{}]".format( self.xor_parameter_list ) )
+
 
 class Parameters( object ):
 
+	mandatory_regex = re.compile( 'Mandatory parameter', re.IGNORECASE )
+	
+	def __init__( self, method ):
+		self.method = method
+		self.parameter_list = []
+		self.include_common = []
+		return
+
+	def new_parameter( self, *args, **kwargs ):
+		return Parameter( self, *args, **kwargs )
+
+	def add_elements( self, parameters ):
+		for parameter_element in parameters:
+			if parameter_element.text == "Global Parameters":
+				self.include_common.append( "global" )
+			else:
+				self.parameter_list + self.process_parameter_element( parameter_element )
+		return
+
+	def process_parameter_element( self, parameter_element ):
+		parameter_list = []
+		verbose_write( 0, "parameter_element = [{}]".format( lxml.etree.tostring( parameter_element ).decode( "utf-8" ) ) )
+		#check( list( parameter_element )[ 0 ].tag == "strong" , "First child of parameter_element must be <strong/>...", asrt=True )
+		
+		if parameter_element.tag == "definition_list":
+			name = xpath( parameter_element, "./definition_list_item[1]/term/strong/text()", must_exist=True, msg="Looking for name inside parameter" )[ 0 ]
+			parameter_list.append( self.new_parameter( name=name, description="" ) )
+		else:
+			xor_parameter = xpath( parameter_element, "( translate( translate(./text()[1], ' &#9;&#10;&#13', ''), 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) = 'OR' ) and ( count( ./strong ) = 2 )", must_exist=True, msg="checking for XOR in parameter_element" )
+			verbose_write( 0, "xor_parameter = [{}]".format( xor_parameter ) )
+			if xor_parameter:
+				strong_elements = xpath( parameter_element, "./strong", must_exist=True, count=( lambda x: x >= 2 ), msg="locating strong in parameter_element" )
+				description = strong_elements[ 1 ].tail
+				if description is None:
+					description = ""
+				parameter_list.append( self.new_parameter( name=strong_elements[ 0 ].text, description=description ) )
+				parameter_list.append( self.new_parameter( name=strong_elements[ 1 ].text, description=description ) )
+				parameter_list[-2].xor_parameter_list.append( parameter_list[-1] )
+				parameter_list[-1].xor_parameter_list.append( parameter_list[-2] )
+			else:
+				name = xpath( parameter_element, "./strong/text()", must_exist=True, msg="Looking for name inside parameter" )[ 0 ]
+				description = list( parameter_element )[ 0 ].tail
+				if description is None:
+					description = ""
+				parameter_list.append( self.new_parameter( name=name, description=description ) )
+		for parameter in parameter_list:
+			parameter.verbose_write()
+		return parameter_list
 
 class Method( object ):
 
+	def __init__( self, specification, method_section ):
+		self.specification = specification
+		self.request_parameters = Parameters( self )
+		self.response_codes = ResponseCodes( self )
+		if method_section is not None:
+			self.process_element( method_section )
+		return
+		
+	def process_element( self, method_section ):
+
+		verbose_write( 2, "method_section = {}".format( lxml.etree.tostring( method_section ).decode( "utf-8" ) ) )
+		definition_list = xpath( method_section, "./definition_list", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for definition_list inside method section" )[ 0 ]
+		self.url = xpath( definition_list, "./definition_list_item[ starts-with( term, 'URL' ) or starts-with( term, 'API Address' ) ]/definition//paragraph/reference/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for url in definition_list" )[ 0 ]
+		verbose_write( 0, "url = {}".format( self.url ) )
+		self.url_parsed = urllib.parse.urlparse( self.url )
+		verbose_write( 0, "url_parsed = [{}]".format( self.url_parsed ) )
+		self.url_path_parsed = urlpath_parse( self.url_parsed.path, normalize = True )
+		verbose_write( 0, "url_path_parsed = [{}]".format( self.url_path_parsed ) )
+		self.name = self.url_path_parsed[ 0 ]
+		verbose_write( 0, "name = [{}]".format( self.name ) )
+
+		http_method = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Method' ) or starts-with( term, 'HTTP Request Type' ) or starts-with( term, 'HTTP Resquest Type' ) ]/definition//paragraph/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for http method in definition_list" )[ 0 ]
+		verbose_write( 0, "http_method = {}".format( http_method ) )
+
+		request_parameters = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Request Parameters' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for request parameters in definition_list" )
+		verbose_write( 0, "request_parameters = {}".format( [ lxml.etree.tostring( request_parameter ).decode( "utf-8" ) for request_parameter in request_parameters ] ) )
+		self.request_parameters.add_elements( request_parameters )
+
+		response_codes = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Response Code' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for request parameters in definition_list" )
+		verbose_write( 0, "response_codes = {}".format( [ lxml.etree.tostring( response_code ).decode( "utf-8" ) for response_code in response_codes ] ) )
+		self.response_codes.add_elements( response_codes )
+
+		response_example = json.loads( xpath( method_section, "./paragraph[ text() = 'Response Example:' ]/following::block_quote[1]//literal_block/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for response example in definition_list" )[ 0 ] )
+		verbose_write( 0, "response_example = {}".format( json.dumps( response_example ) ) )
+
+		return
+
+
+class Specification( object ):
+	
+	def __init__( self, specifications, root_tree ):
+		self.specifications = specifications
+		self.parameters = {}
+		self.response_codes = {}
+		self.methods = {}
+		self.process( root_tree )
+		return
+
+	def process( self, root_tree ):
+		verbose_write( 3, "root_tree = {}".format( lxml.etree.tostring( root_tree.getroot() ).decode( "utf-8" ) ) )
+
+		parameters = xpath( root_tree, "//section[ title = 'Global Parameters' ]/definition_list/definition_list_item/definition/bullet_list/list_item/paragraph", must_exist = False, msg="looking for parameters inside specification" )
+		verbose_write( 0, "parameters = {}".format( [ lxml.etree.tostring( parameter ).decode( "utf-8" ) for parameter in parameters ] ) )
+		#self.parameters += parameters
+
+		response_codes = xpath( root_tree, "//section[ title = 'Common Response Codes' ]/definition_list/definition_list_item/definition/bullet_list/list_item/paragraph", must_exist = False, msg="looking for response_codes inside specification" )
+		verbose_write( 0, "response_codes = {}".format( [ lxml.etree.tostring( response_code ).decode( "utf-8" ) for response_code in response_codes ] ) )
+		#self.response_codes += response_codes
+		
+		api_sections = xpath( root_tree, "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( section/definition_list/definition_list_item/term = 'URL:' ) ]", must_exist = False, msg="looking for api sections inside specification" )
+		if api_sections is not None:
+			for api_section in api_sections:
+				self.process_api_section( api_section )
+		return
+
+	def process_api_section( self, api_section ):
+		verbose_write( 3, "api_section = {}".format( lxml.etree.tostring( api_section ).decode( "utf-8" ) ) )
+
+		method_sections = xpath( api_section, "./section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for method_sections inside api_section" )
+		for method_section in method_sections:
+			#self.process_method_section( method_section )
+			self.append( self.new_method( method_section ) )
+		return
+
+	def append( self, method ):
+		self.methods[ method.name ] = method;
+		return
+
+	def new_method( self, *args, **kwargs ):
+		return Method( self, *args, **kwargs );
+
+
+class Specifications( list ):
+
+	def xxx( self, xxx ):
+		return
+
+	def new_specification( self, *args, **kwargs ):
+		return Specification( specifications, *args, **kwargs );
 
 
 class DocumentProcessor( object ):
@@ -49,23 +298,8 @@ class DocumentProcessor( object ):
 			return
 
 	@staticmethod
-	def check( condition, message, *, asrt=False ):
-		if not condition:
-			if asrt and not __debug__: raise AssertionError( message )
-			raise RuntimeError( message )
-		return
 
 	@staticmethod
-	def xpath( element, path, *, count=None, must_exist, asrt=False, msg="" ):
-		verbose_write( 3, "{}:element = {}".format( msg, lxml.etree.tostring( element ).decode( "utf-8" ) ), stack_depth=2 )
-		verbose_write( 1, "{}:xpath = {}".format( msg, path ), stack_depth=2 )
-		result = element.xpath( path )
-		verbose_write( 2, "{}:result = {}, len( result ) = {}".format( msg, result, len( result ) ), stack_depth=2 )
-		if must_exist:
-			DocumentProcessor.check( ( result is not None ) and ( len( result ) > 0 ), "{}:xpath query [{}] did not yield results.".format( msg, path ) )
-		if count is not None:
-			DocumentProcessor.check( count( len( result ) ), "{}:xpath query [{}] got {} results, expected something else".format( msg, path, len( result ) ) )
-		return result;
 
 	def __init__( self ):
 		self.global_parameters = []
@@ -91,7 +325,7 @@ class DocumentProcessor( object ):
 	def process_api_section( self, api_section ):
 		verbose_write( 3, "api_section = {}".format( lxml.etree.tostring( api_section ).decode( "utf-8" ) ) )
 
-		method_sections = self.xpath( root.getroottree(), "./section/section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for method sections inside api section" )
+		method_sections = self.xpath( api_section, "./section[ ( starts-with( definition_list/definition_list_item/term, 'URL' ) ) or ( starts-with( definition_list/definition_list_item/term, 'API Address' ) ) ]", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for method sections inside api section" )
 		for method_section in method_sections:
 			self.process_method_section( method_section )
 		return
@@ -174,20 +408,23 @@ if __name__ == '__main__':
 	document_settings = DocumentSettings()
 	etree_parser = lxml.etree.XMLParser( remove_blank_text=True, resolve_entities=True )
 
-	document_processor = DocumentProcessor()
+	#document_processor = DocumentProcessor()
+
+	specifications = Specifications();
 
 	for input_fh in input_fhs:
 		verbose_write( 0, "input_fh={}".format( input_fh ) )
 		input_data = input_fh.read()
 		document = docutils.utils.new_document( source_path=input_fh.name, settings=document_settings )
 		rst_parser.parse( input_data, document )
-		verbose_write( 1, "document.children={}".format( document.children ) )
-		verbose_write( 2, "document.asdom()={}".format( document.asdom() ) )
-		verbose_write( 5, "document={}".format( document.asdom().toprettyxml( "  ", '\n' ) ) )
+		verbose_write( 6, "document.children={}".format( document.children ) )
+		verbose_write( 6, "document.asdom()={}".format( document.asdom() ) )
+		verbose_write( 6, "document={}".format( document.asdom().toprettyxml( "  ", '\n' ) ) )
 		tmp = open( input_fh.name + ".xml", 'w' )
-		verbose_write( 2, "tmp.name={}".format( tmp.name ) )
+		verbose_write( 0, "tmp.name={}".format( tmp.name ) )
 		tmp.write( document.asdom().toprettyxml( "  ", '\n' ) )
-		root = lxml.etree.fromstring( document.asdom().toxml(), etree_parser )
-		document_processor.process( root )
-
+		#root = lxml.etree.fromstring( document.asdom().toxml(), etree_parser )
+		#document_processor.process( root )
+		root_tree = lxml.etree.fromstring( document.asdom().toxml(), etree_parser ).getroottree()
+		specifications.append( specifications.new_specification( root_tree ) )
 
