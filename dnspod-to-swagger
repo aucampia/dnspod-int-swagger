@@ -25,19 +25,28 @@ import posixpath
 import re
 
 
-def urlpath_parse( path_string, *, normalize ):
-	result = []
+class UrlPath( object ):
 
-	if normalize:
-		tmp = posixpath.normpath( path_string )
-	else:
-		tmp = path_string
+	def __init__( self, path=None, *, normalize ):
+		self.components = []
+		if type( path ) is list:
+			self.components = path
+		else:
+			self.parse( path, normalize = normalize )
+		return
 
-	while tmp != "/":
-		( tmp, item ) = posixpath.split( tmp )
-		result.insert( 0, urllib.parse.unquote( item ) )
+	def parse( self, path_string, *, normalize ):
+		if normalize:
+			tmp = posixpath.normpath( path_string )
+		else:
+			tmp = path_string
+    
+		while tmp != "/":
+			( tmp, item ) = posixpath.split( tmp )
+			self.components.insert( 0, urllib.parse.unquote( item ) )
 
-	return result
+	def __str__( self ):
+		return "/".join( self.components )
 
 class DocumentSettings:
 	def __init__( self ):
@@ -54,13 +63,13 @@ class DocumentSettings:
 		self.id_prefix = ""
 
 
-def check( condition, message, *, asrt=False ):
+def check( condition, message, *, asrt = False ):
 	if not condition:
 		if asrt and not __debug__: raise AssertionError( message )
 		raise RuntimeError( message )
 	return
 
-def xpath( element, path, *, count=None, must_exist, asrt=False, msg="" ):
+def xpath( element, path, *, count = None, must_exist, asrt = False, msg = "" ):
 	verbose_write( 3, "{}:element = {}".format( msg, lxml.etree.tostring( element ).decode( "utf-8" ) ), stack_depth=2 )
 	verbose_write( 1, "{}:xpath = {}".format( msg, path ), stack_depth=2 )
 	result = element.xpath( path )
@@ -78,7 +87,7 @@ class ResponseCode( object ):
 
 	regex = re.compile( '^(-?[0-9]+)(.*)$', re.IGNORECASE )
 
-	def __init__( self, response_codes, *, code=None, description=None, element=None ):
+	def __init__( self, response_codes, *, code = None, description = None, element = None ):
 		self.response_codes = response_codes
 		self.code = code
 		self.description = None
@@ -128,23 +137,31 @@ class ResponseCodes( object ):
 
 class Parameter( object ):
 
-	def __init__( self, parameters, *, name=None, description=None, mandatory=False, xor_parameter_list=[] ):
+	def __init__( self, parameters, *, name = None, description = None, mandatory = False, xor_parameter_list = None ):
 		self.mandatory = mandatory
 		self.name = name
 		self.description = None
 		if description is not None:
 			self.description = description.strip()
 		self.parameters = parameters
-		self.xor_parameter_list = xor_parameter_list
+		if xor_parameter_list is None:
+			self.xor_parameter_list = []
+		else:
+			self.xor_parameter_list = xor_parameter_list
 		#if parameter_element is not None:
 		#	self.process_parameter_element( parameter_element )
 		return
 		
 	def verbose_write( self ):
+		verbose_write( 0, "id = [{}]".format( id( self ) ) )
 		verbose_write( 0, "name = [{}]".format( self.name ) )
 		verbose_write( 0, "description = [{}]".format( self.description ) )
 		verbose_write( 0, "mandatory = [{}]".format( self.mandatory ) )
 		verbose_write( 0, "xor_parameter_list = [{}]".format( self.xor_parameter_list ) )
+
+	def __repr__( self ):
+		return "Paramter( name = {!r}, description = {!r}, mandatory = {!r}, xor_parameter_list = {!r} )".format(
+				self.name, self.description, self.mandatory, self.xor_parameter_list )
 
 
 class Parameters( object ):
@@ -188,6 +205,8 @@ class Parameters( object ):
 				parameter_list.append( self.new_parameter( name=strong_elements[ 1 ].text, description=description ) )
 				parameter_list[-2].xor_parameter_list.append( parameter_list[-1] )
 				parameter_list[-1].xor_parameter_list.append( parameter_list[-2] )
+				verbose_write( 0, "parameter_list[-1] = {}".format( id( parameter_list[-1] ) ) )
+				verbose_write( 0, "parameter_list[-2] = {}".format( id( parameter_list[-2] ) ) )
 			else:
 				name = xpath( parameter_element, "./strong/text()", must_exist=True, msg="Looking for name inside parameter" )[ 0 ]
 				description = list( parameter_element )[ 0 ].tail
@@ -216,9 +235,9 @@ class Method( object ):
 		verbose_write( 0, "url = {}".format( self.url ) )
 		self.url_parsed = urllib.parse.urlparse( self.url )
 		verbose_write( 0, "url_parsed = [{}]".format( self.url_parsed ) )
-		self.url_path_parsed = urlpath_parse( self.url_parsed.path, normalize = True )
-		verbose_write( 0, "url_path_parsed = [{}]".format( self.url_path_parsed ) )
-		self.name = self.url_path_parsed[ 0 ]
+		self.url_path = UrlPath( self.url_parsed.path, normalize = True )
+		verbose_write( 0, "url_path.components = [{}]".format( self.url_path.components ) )
+		self.name = self.url_path.components[ 0 ]
 		verbose_write( 0, "name = [{}]".format( self.name ) )
 
 		http_method = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Method' ) or starts-with( term, 'HTTP Request Type' ) or starts-with( term, 'HTTP Resquest Type' ) ]/definition//paragraph/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for http method in definition_list" )[ 0 ]
@@ -228,7 +247,7 @@ class Method( object ):
 		verbose_write( 0, "request_parameters = {}".format( [ lxml.etree.tostring( request_parameter ).decode( "utf-8" ) for request_parameter in request_parameters ] ) )
 		self.request_parameters.add_elements( request_parameters )
 
-		response_codes = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Response Code' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for request parameters in definition_list" )
+		response_codes = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Response Code' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for response_codes in definition_list" )
 		verbose_write( 0, "response_codes = {}".format( [ lxml.etree.tostring( response_code ).decode( "utf-8" ) for response_code in response_codes ] ) )
 		self.response_codes.add_elements( response_codes )
 
@@ -236,6 +255,11 @@ class Method( object ):
 		verbose_write( 0, "response_example = {}".format( json.dumps( response_example ) ) )
 
 		return
+
+	def to_swagger( self ):
+		ret = {}
+		ret[ "path" ] = str( self.url_path )
+		return ret
 
 
 class Specification( object ):
@@ -281,16 +305,47 @@ class Specification( object ):
 	def new_method( self, *args, **kwargs ):
 		return Method( self, *args, **kwargs );
 
+	def to_swagger( self ):
+		ret = []
+		verbose_write( 1, "len( self.methods ) = {}".format( len( self.methods ) ) )
+		for method_name, method in self.methods.items():
+			verbose_write( 1, "{} -> type( method ) = {}".format( method_name, type( method ) ) )
+			ret += [ method.to_swagger() ]
+			verbose_write( 2, "...".format() )
+		verbose_write( 2, "...".format() )
+		return ret
+
 
 class Specifications( list ):
-
-	def xxx( self, xxx ):
-		return
 
 	def new_specification( self, *args, **kwargs ):
 		return Specification( specifications, *args, **kwargs );
 
+	def to_swagger( self ):
+		ret = {}
+		ret[ "swaggerVersion" ] = "1.2";
+		ret[ "apiVersion" ] = "4.6";
+		ret[ "basePath" ] = "https://api.dnspod.com";
+		ret[ "resourcePath" ] = ".";
+		info = ret[ "info" ] = {};
+		info[ "title" ] = "DNSPod International API";
+		info[ "description" ] = "TODO";
+		info[ "termsOfServiceUrl" ] = "https://www.dnspod.com/docs/index.html";
+		info[ "contact" ] = "info@dnspod.com"
+		info[ "license" ] = "..."
+		info[ "licenseUrl" ] = "..."
 
+		ret[ "produces" ] = [ "application/json", "application/xml"  ]
+		apis = ret[ "apis" ] = []
+		verbose_write( 1, "type( self ) = {}".format( type( self ) ) )
+		for specification in self:
+			verbose_write( 1, "type( specification ) = {}".format( type( specification ) ) )
+			apis += specification.to_swagger()
+			verbose_write( 2, "...".format() )
+		return ret
+			
+
+'''
 class DocumentProcessor( object ):
 
 	class State( object ):
@@ -349,7 +404,7 @@ class DocumentProcessor( object ):
 		verbose_write( 0, "response_example = {}".format( json.dumps( response_example ) ) )
 
 		return
-
+'''
 	
 
 if __name__ == '__main__':
@@ -392,6 +447,7 @@ if __name__ == '__main__':
 	verbose_write( 0, "arguments.verbosity={}".format( json.dumps( arguments.verbosity ) ) )
 	verbose_write( 0, "arguments.inputs_o={}".format( json.dumps( arguments.inputs_o ) ) )
 	verbose_write( 0, "arguments.input={}".format( json.dumps( arguments.input ) ) )
+	verbose_write( 0, "arguments.output={}".format( json.dumps( arguments.output ) ) )
 	verbose_write( 0, "arguments.encoding={}".format( json.dumps( arguments.encoding ) ) )
 	verbose_write( 0, "inputs={}".format( json.dumps( inputs ) ) )
 
@@ -402,7 +458,13 @@ if __name__ == '__main__':
 		for input in inputs:
 			input_fhs = input_fhs + [ open( input, "r", encoding=arguments.encoding ) ]
 	else:
-		input_fhs = input_fhs +[ io.TextIOWrapper( sys.stdin.buffer, encoding=arguments.encoding ) ]
+		input_fhs = input_fhs + [ io.TextIOWrapper( sys.stdin.buffer, encoding=arguments.encoding ) ]
+
+	output_fh = sys.stdout
+
+	if arguments.output is not None:
+		output_fh = open( arguments.output, "w" )
+	
 
 	rst_parser = docutils.parsers.rst.Parser()
 	document_settings = DocumentSettings()
@@ -428,3 +490,6 @@ if __name__ == '__main__':
 		root_tree = lxml.etree.fromstring( document.asdom().toxml(), etree_parser ).getroottree()
 		specifications.append( specifications.new_specification( root_tree ) )
 
+	verbose_write( 0, "specifications={!r}".format( specifications ) )
+
+	output_fh.write( json.dumps( specifications.to_swagger(), indent = "  " ) )
