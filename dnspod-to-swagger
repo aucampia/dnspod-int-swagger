@@ -24,6 +24,8 @@ import posixpath
 
 import re
 
+import collections
+
 
 class UrlPath( object ):
 
@@ -240,8 +242,8 @@ class Method( object ):
 		self.name = self.url_path.components[ 0 ]
 		verbose_write( 0, "name = [{}]".format( self.name ) )
 
-		http_method = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Method' ) or starts-with( term, 'HTTP Request Type' ) or starts-with( term, 'HTTP Resquest Type' ) ]/definition//paragraph/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for http method in definition_list" )[ 0 ]
-		verbose_write( 0, "http_method = {}".format( http_method ) )
+		self.http_method = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Method' ) or starts-with( term, 'HTTP Request Type' ) or starts-with( term, 'HTTP Resquest Type' ) ]/definition//paragraph/text()", count=( lambda x: x == 1 ), must_exist = True, asrt = True, msg="looking for http method in definition_list" )[ 0 ]
+		verbose_write( 0, "http_method = {}".format( self.http_method ) )
 
 		request_parameters = xpath( definition_list, "./definition_list_item[ starts-with( term, 'Request Parameters' ) ]/definition/bullet_list/list_item/*", count=( lambda x: x >= 1 ), must_exist = True, asrt = True, msg="looking for request parameters in definition_list" )
 		verbose_write( 0, "request_parameters = {}".format( [ lxml.etree.tostring( request_parameter ).decode( "utf-8" ) for request_parameter in request_parameters ] ) )
@@ -257,8 +259,16 @@ class Method( object ):
 		return
 
 	def to_swagger( self ):
-		ret = {}
+		ret = collections.OrderedDict()
 		ret[ "path" ] = str( self.url_path )
+		ret[ "description" ] = "TODO ..."
+		operations = ret[ "operations" ] = []
+		operation = collections.OrderedDict()
+		operations.append( operation )
+		operation[ "method" ] = self.http_method
+		operation[ "summary" ] = "TODO ..."
+		operation[ "notes" ] = "TODO ..."
+		operation[ "nickname" ] = str( self.url_path ).lower().replace( ".", "_" )
 		return ret
 
 
@@ -322,7 +332,7 @@ class Specifications( list ):
 		return Specification( specifications, *args, **kwargs );
 
 	def to_swagger( self ):
-		ret = {}
+		ret = collections.OrderedDict()
 		ret[ "swaggerVersion" ] = "1.2";
 		ret[ "apiVersion" ] = "4.6";
 		ret[ "basePath" ] = "https://api.dnspod.com";
