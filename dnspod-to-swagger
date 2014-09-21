@@ -184,7 +184,10 @@ class Parameters( object ):
 			if parameter_element.text == "Global Parameters":
 				self.include_common.append( "global" )
 			else:
-				self.parameter_list + self.process_parameter_element( parameter_element )
+				parameter_list = self.process_parameter_element( parameter_element )
+				verbose_write( 0, "len( parameter_list ) = {}".format( len( parameter_list ) ) )
+				self.parameter_list += parameter_list
+				verbose_write( 0, "len( self.parameter_list ) = {}".format( len( self.parameter_list ) ) )
 		return
 
 	def process_parameter_element( self, parameter_element ):
@@ -217,7 +220,16 @@ class Parameters( object ):
 				parameter_list.append( self.new_parameter( name=name, description=description ) )
 		for parameter in parameter_list:
 			parameter.verbose_write()
+		verbose_write( 0, "len( parameter_list ) = {}".format( len( parameter_list ) ) )
 		return parameter_list
+
+	def expand_common( self ):
+		verbose_write( 2, "...".format( ) )
+		for tag in self.include_common:
+			if tag == "global":
+				self.add_elements( self.method.specification.specifications.request_parameters )
+				
+		return
 
 class Method( object ):
 
@@ -258,6 +270,11 @@ class Method( object ):
 
 		return
 
+	def expand_common( self ):
+		verbose_write( 2, "...".format( ) )
+		self.request_parameters.expand_common()
+		return
+
 	def to_swagger( self ):
 		ret = collections.OrderedDict()
 		ret[ "path" ] = str( self.url_path )
@@ -269,6 +286,18 @@ class Method( object ):
 		operation[ "summary" ] = "TODO ..."
 		operation[ "notes" ] = "TODO ..."
 		operation[ "nickname" ] = str( self.url_path ).lower().replace( ".", "_" )
+		parameters = operation[ "parameters" ] = []
+		verbose_write( 0, "len( self.request_parameters.parameter_list ) = {}".format( len( self.request_parameters.parameter_list ) ) )
+		for parameter in self.request_parameters.parameter_list:
+			verbose_write( 0, "parameter.name = {}".format( json.dumps( parameter.name ) ) )
+			swagger_parameter = collections.OrderedDict()
+			parameters.append( swagger_parameter )
+			swagger_parameter[ "paramType" ] = "form"
+			swagger_parameter[ "name" ] = parameter.name
+			swagger_parameter[ "type" ] = "string"
+			swagger_parameter[ "description" ] = parameter.description
+			swagger_parameter[ "required" ] = parameter.mandatory
+			swagger_parameter[ "allowMultiple" ] = False
 		return ret
 
 
@@ -276,8 +305,6 @@ class Specification( object ):
 	
 	def __init__( self, specifications, root_tree ):
 		self.specifications = specifications
-		self.parameters = {}
-		self.response_codes = {}
 		self.methods = {}
 		self.process( root_tree )
 		return
@@ -285,13 +312,13 @@ class Specification( object ):
 	def process( self, root_tree ):
 		verbose_write( 3, "root_tree = {}".format( lxml.etree.tostring( root_tree.getroot() ).decode( "utf-8" ) ) )
 
-		parameters = xpath( root_tree, "//section[ title = 'Global Parameters' ]/definition_list/definition_list_item/definition/bullet_list/list_item/paragraph", must_exist = False, msg="looking for parameters inside specification" )
-		verbose_write( 0, "parameters = {}".format( [ lxml.etree.tostring( parameter ).decode( "utf-8" ) for parameter in parameters ] ) )
-		#self.parameters += parameters
+		request_parameters = xpath( root_tree, "//section[ title = 'Global Parameters' ]/definition_list/definition_list_item/definition/bullet_list/list_item/*", must_exist = False, msg="looking for parameters inside specification" )
+		verbose_write( 0, "request_parameters = {}".format( [ lxml.etree.tostring( request_parameter ).decode( "utf-8" ) for request_parameter in request_parameters ] ) )
+		self.specifications.request_parameters += request_parameters
 
 		response_codes = xpath( root_tree, "//section[ title = 'Common Response Codes' ]/definition_list/definition_list_item/definition/bullet_list/list_item/paragraph", must_exist = False, msg="looking for response_codes inside specification" )
 		verbose_write( 0, "response_codes = {}".format( [ lxml.etree.tostring( response_code ).decode( "utf-8" ) for response_code in response_codes ] ) )
-		#self.response_codes += response_codes
+		self.specifications.response_codes += response_codes
 		
 		api_sections = xpath( root_tree, "//section[ ( starts-with( section/definition_list/definition_list_item/term, 'URL' ) ) or ( section/definition_list/definition_list_item/term = 'URL:' ) ]", must_exist = False, msg="looking for api sections inside specification" )
 		if api_sections is not None:
@@ -315,6 +342,12 @@ class Specification( object ):
 	def new_method( self, *args, **kwargs ):
 		return Method( self, *args, **kwargs );
 
+	def expand_common( self ):
+		verbose_write( 2, "...".format( ) )
+		for method_name, method in self.methods.items():
+			method.expand_common()
+		return
+
 	def to_swagger( self ):
 		ret = []
 		verbose_write( 1, "len( self.methods ) = {}".format( len( self.methods ) ) )
@@ -326,21 +359,35 @@ class Specification( object ):
 		return ret
 
 
-class Specifications( list ):
+class Specifications( object ):
+		
+	def __init__( self ):
+		self.specification_list = []
+		self.request_parameters = []
+		self.response_codes = []
 
 	def new_specification( self, *args, **kwargs ):
 		return Specification( specifications, *args, **kwargs );
 
+	def expand_common( self ):
+		verbose_write( 2, "...".format( ) )
+		for specification in self.specification_list:
+			specification.expand_common()
+		return
+
+	def append( self, specification ):
+		self.specification_list.append( specification )
+
 	def to_swagger( self ):
 		ret = collections.OrderedDict()
-		ret[ "swaggerVersion" ] = "1.2";
-		ret[ "apiVersion" ] = "4.6";
-		ret[ "basePath" ] = "https://api.dnspod.com";
-		ret[ "resourcePath" ] = ".";
-		info = ret[ "info" ] = {};
-		info[ "title" ] = "DNSPod International API";
-		info[ "description" ] = "TODO";
-		info[ "termsOfServiceUrl" ] = "https://www.dnspod.com/docs/index.html";
+		ret[ "swaggerVersion" ] = "1.2"
+		ret[ "apiVersion" ] = "4.6"
+		ret[ "basePath" ] = "https://api.dnspod.com"
+		ret[ "resourcePath" ] = "."
+		info = ret[ "info" ] = collections.OrderedDict()
+		info[ "title" ] = "DNSPod International API"
+		info[ "description" ] = "TODO"
+		info[ "termsOfServiceUrl" ] = "https://www.dnspod.com/docs/index.html"
 		info[ "contact" ] = "info@dnspod.com"
 		info[ "license" ] = "..."
 		info[ "licenseUrl" ] = "..."
@@ -348,7 +395,7 @@ class Specifications( list ):
 		ret[ "produces" ] = [ "application/json", "application/xml"  ]
 		apis = ret[ "apis" ] = []
 		verbose_write( 1, "type( self ) = {}".format( type( self ) ) )
-		for specification in self:
+		for specification in self.specification_list:
 			verbose_write( 1, "type( specification ) = {}".format( type( specification ) ) )
 			apis += specification.to_swagger()
 			verbose_write( 2, "...".format() )
@@ -448,7 +495,7 @@ if __name__ == '__main__':
 				sys.stderr.write( "{}::{}::{}[{}]:{}\n".format( module_name, class_name, code_name, parentframe.f_lineno, string ) )
 
 	else:
-		verbose_write = lambda *a: None
+		verbose_write = lambda *a, **k: None
 
 	inputs = []
 	inputs += arguments.inputs_o
@@ -473,7 +520,7 @@ if __name__ == '__main__':
 	output_fh = sys.stdout
 
 	if arguments.output is not None:
-		output_fh = open( arguments.output, "w" )
+		output_fh = open( arguments.output[ 0 ], "w" )
 	
 
 	rst_parser = docutils.parsers.rst.Parser()
@@ -499,6 +546,8 @@ if __name__ == '__main__':
 		#document_processor.process( root )
 		root_tree = lxml.etree.fromstring( document.asdom().toxml(), etree_parser ).getroottree()
 		specifications.append( specifications.new_specification( root_tree ) )
+
+	specifications.expand_common()
 
 	verbose_write( 0, "specifications={!r}".format( specifications ) )
 
