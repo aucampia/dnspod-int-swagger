@@ -382,8 +382,8 @@ class Specifications( object ):
 		ret = collections.OrderedDict()
 		ret[ "swaggerVersion" ] = "1.2"
 		ret[ "apiVersion" ] = "4.6"
-		ret[ "basePath" ] = "https://api.dnspod.com"
-		ret[ "resourcePath" ] = "."
+		ret[ "basePath" ] = "https://api.dnspod.com/"
+		ret[ "resourcePath" ] = "dnspod-intl"
 		info = ret[ "info" ] = collections.OrderedDict()
 		info[ "title" ] = "DNSPod International API"
 		info[ "description" ] = "TODO"
