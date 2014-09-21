@@ -247,6 +247,18 @@
             <bullet_list bullet="*">
               <list_item>
                 <paragraph>
+                  <strong>format</strong>
+                   {json,xml} The format of response.Default &quot;xml&quot;. &quot;json&quot; is highly recommended.Optional parameter.
+                </paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>
+                  <strong>error_on_empty</strong>
+                   {yes,no} Whether to response an error when there's no results.
+                </paragraph>
+              </list_item>
+              <list_item>
+                <paragraph>
                   <strong>login_email</strong>
                    The login email. Mandatory parameter.
                 </paragraph>
